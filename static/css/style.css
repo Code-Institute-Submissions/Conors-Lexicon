@@ -1,3 +1,33 @@
+/* Imported Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@300&family=Playfair+Display&display=swap');
+
+
+
+
+/* Fonts */
+
+.lora {
+    font-family:'Lora', Helvetica, sans-serif;
+}
+
+/* colours */
+
+.rose {
+    background-color: #d83f87;
+}
+
+.dark-purple {
+    background-color: #2A1B3D;
+}
+.purple-custom {
+    background-color: #E98074;
+}
+
+/* margins */
+.mr-nav {
+    margin-right:20px;
+}
+
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
