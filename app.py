@@ -25,6 +25,10 @@ def get_dictionary():
     words = list(mongo.db.words.find())
     return render_template("index.html", words=words)
 
+@app.route("/how_it_works")
+def how_it_works():
+    return render_template("howitworks.html")
+
 
 @app.route("/search", methods=["GET", "POST"])
 def search():

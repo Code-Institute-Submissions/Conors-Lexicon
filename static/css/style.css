@@ -9,6 +9,12 @@
 .lora {
     font-family:'Lora', Helvetica, sans-serif;
 }
+.playfair-display {
+    font-family:'Playfair-Display', Helvetica, sans-serif;
+}
+.montserrat {
+    font-family:'Montserrat', Helvetica, sans-serif;
+}
 
 /* colours */
 
@@ -19,14 +25,20 @@
 .dark-purple {
     background-color: #2A1B3D;
 }
-.purple-custom {
-    background-color: #E98074;
+.beige{
+    background-color: #A4B3B6;
 }
 
 /* margins */
 .mr-nav {
     margin-right:20px;
 }
+.mt-word-of-day {
+    margin-top:50px;
+
+}
+/* navbar */
+
 
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
@@ -46,4 +58,19 @@
 .collapsible-header .col strong {
     margin: 5px;
     line-height: 42px;
+}
+
+
+/* viewwidths */
+
+/*
+@media only screen and (max-width:1225px) {
+nav ul a {
+    font-size: 11px;
+}
+}
+@media only screen and (max-width:1380px) {
+nav ul a {
+    padding:0 8px;
+}
 }
