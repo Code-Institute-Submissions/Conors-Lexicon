@@ -12,6 +12,23 @@ $(document).ready(function () {
         }
     });
 
+    
+});
+
+$(document).ready(function(){
+$(".ico").addClass("fa-minus blink rotate");
+  $("input").focus(function () {
+    $(".ico").addClass("fa-search search");
+    $(".ico").removeClass("fa-minus blink");
+  });
+  $("input").focusout(function () {
+    $(".ico").addClass("fa-minus blink");
+    $(".ico").removeClass("search");
+  });
+ 
+
+ 
+
     validateMaterializeSelect();
     function validateMaterializeSelect() {
         let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };

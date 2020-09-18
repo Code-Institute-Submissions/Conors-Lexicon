@@ -28,18 +28,44 @@
 .beige{
     background-color: #A4B3B6;
 }
+.white {
+    background-color: #ffffff;
+}
+.light-purple {
+    background-color:#e98074;
+}
 
 /* margins */
-.mr-nav {
-    margin-right:20px;
-}
-.mt-word-of-day {
-    margin-top:50px;
 
+.mr-10 {
+    margin-left:10px;
+}
+
+.mt-150 {
+    margin-top:150px;
+}
+
+.pb-40 {
+    padding-bottom:40px;
+}
+.padding {
+    padding-top:25px;
+    padding-bottom:15px;
+}
+
+
+.mt-15 {
+    margin-top:15px;
 }
 /* navbar */
 
+nav {
+    line-height:normal;
 
+}
+.brand-logo {
+    margin-left:30px;
+}
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -47,30 +73,110 @@
 .flashes h4 {
     line-height: 2;
 }
+nav.nav-center ul {
+     text-align:center; 
+}
+nav.nav-center ul li {
+    display: inline;
+    float: none;
+}
+nav.nav-center ul li a {
+    display: inline-block;
+}
 
-
+nav ul a {
+    padding-right:10px;
+    font-size: 12px;
+}
 .btn-small {
     margin: 5px;
 }
 
+.top-nav-margin {
+    margin-bottom:0px;
+    margin-top:0px;
+}
 
+
+.remove-shadow {
+    box-shadow:none;
+    -webkit-box-shadow:none;
+}
 
 .collapsible-header .col strong {
     margin: 5px;
     line-height: 42px;
 }
-
-
-/* viewwidths */
-
-/*
-@media only screen and (max-width:1225px) {
-nav ul a {
-    font-size: 11px;
+.form {
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items:center;
 }
+
+.input-index {
+    width: 350px;
+    height: 60px;
+    padding: 10px;
+    padding-left: 100px;
+    border-radius: 10px;
+    
+    border: none;
+    color: white;
+    font-size: 24px;
+    font-family: "Dosis", sans-serif;
+    outline:none;
 }
-@media only screen and (max-width:1380px) {
-nav ul a {
-    padding:0 8px;
+.yt {
+    margin-left:100px;
 }
+.ico {
+    position:absolute;
+    top: 15px;
+    color: white;
+    font-size: 28px;
+}
+
+.blink {
+    transform: rotate(90deg);
+    animation: outFocus 1s infinite ease-in-out;
+}
+
+.search {
+    transition: 1s;
+    animation: onFocus 1s 1 ease-in-out;
+}
+
+@keyframes outFocus {
+    to {
+        opacity: 0;
+    }
+    from {
+        opacity: 1;
+    }
+}
+
+@keyframes onFocus {
+    to {
+        transform: rotateY(0deg);
+    }
+    from {
+        transform: rotateY(90deg);
+    }
+}
+
+/* View Widths */
+
+@media only screen and (max-width: 996px) {
+  .brand-logo {
+      text-align:center;
+      margin-left:0px;
+  }
+ 
+}
+@media only screen and (max-width: 463px) {
+  nav .brand-logo{
+      font-size:26px;
+  }
+ 
 }
