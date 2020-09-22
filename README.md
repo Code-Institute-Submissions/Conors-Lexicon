@@ -42,3 +42,5 @@ Happy coding!
 https://freefrontend.com/jquery-search-boxes/
 
 https://hookagency.com/website-color-schemes/
+
+admin password:admin123

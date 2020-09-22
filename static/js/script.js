@@ -15,6 +15,8 @@ $(document).ready(function () {
     
 });
 
+ $('.dropdown-trigger').dropdown();
+
 $(document).ready(function(){
 $(".ico").addClass("fa-minus blink rotate");
   $("input").focus(function () {

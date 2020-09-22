@@ -53,9 +53,11 @@
     padding-bottom:15px;
 }
 
-
 .mt-15 {
     margin-top:15px;
+}
+.mb-100 {
+    margin-bottom:100px;
 }
 /* navbar */
 
