@@ -15,10 +15,10 @@
       <header>
       <div class="navbar-fixed ">
          <nav class="nav-center nav-extended ">
-            <div class="nav-wrapper padding rose">
+            <div class="nav-wrapper padding blue">
             <div class="row top-nav-margin">
-            <div class="col m6 offset-m3 l3">
-               <a href="{{ url_for('get_dictionary') }}" class="brand-logo lora">Conor's Lexicon</a>
+            <div class="col m6 offset-m3 l3 pt-20">
+               <a href="{{ url_for('get_dictionary') }}" class="brand-logo Parisienne">Conor's Lexicon</a>
                 </div>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                <ul class="col s6 lora hide-on-med-and-down" >
@@ -28,7 +28,7 @@
                   <li><a href="{{ url_for('get_dictionary') }}">Delete Word</a></li>
                   {% if session.user|lower == "admin"|lower %}
                   {% endif %}
-                  <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                  <li><a href="{{ url_for('profile', username=session['user'] ) }}">Profile</a></li>
                   <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                   {% else %}
                   <li><a href="{{ url_for('login') }}">Log in</a></li>
@@ -39,10 +39,10 @@
             </div>
             
 
-            <div class="row pb-40 top-nav-margin rose mt-15">
+            <div class="row pb-30 top-nav-margin blue mt-15">
       <form action="{{ url_for('search')}}" method="post" class=" form  col s6 offset-s3 mt-15">
             <label for="query" class=""><span class="fas ico"></span></label>
-          <input type="text" name="query" id="query" minlength="3" class="validate browser-default light-purple input-index" required>
+          <input type="text" name="query" id="query" minlength="3" class="validate browser-default white input-index" required>
     
         
       </form>
@@ -89,7 +89,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-      <footer class="page-footer rose mt-150">
+      <footer class="page-footer blue mt-150">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">

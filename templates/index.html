@@ -1,52 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% for word in words_rng %}
   <div class="row mb-100">
     <div class="col s12">
-      <div class="card-panel teal mt-word-of-day">
-      <h4>Word of the day</h4>
-        <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Sort Lexicon by Category</a>
-
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="#!">Acronym</a></li>
-    <li><a href="#!">adjective</a></li>
-    <li><a href="#!">idiom</a></li>
-    <li><a href="#!">noun</a></li>
-    <li><a href="#!">proverb</a></li>
-    <li><a href="#!">verb</a></li>
-  </ul>
-
-
-{% if words|length > 0 %}
-{% for word in words %}
-<ul class="collapsible">
-   <li>
-      <div class="collapsible-header beige">
-         <i class="material-icons"></i>
+      <div class="card-panel teal mt-word-of-day white-text">
+      <h4>You might enjoy this</h4>
+            <div class="ml-25 pt-20 lora">
          <strong>{{ word.word_name }}</strong>
-         {% if session.user|lower == word.created_by|lower %}
-         
-         <a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue lighten-1">Delete</a>
-         <div class="s2 offset-10"><a href="{{ url_for('update_word', word_id=word._id) }}" class="btn-small light-blue lighten-1">Edit</a></div>
-        
-         {% endif %}
       </div>
-      <div class="collapsible-body">
+      <div class="ml-25 montserrat">
+        <p>Category: {{ word.category_name }}</p>
          <p>Definition: {{ word.word_definition }}</p>
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
          <p>Associated Hashtags: {{ word.tags }}</p>
          <p><em>by: {{ word.created_by }}</em></p>
       </div>
-   </li>
-</ul>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+
+{% if words|length > 0 %}
+{% for word in words %}
+<div class="row border-style beige">
+<div class=" col l10 s8 ">
+
+      <div class="ml-25 pt-20 lora">
+         <strong>{{ word.word_name }}</strong>
+      </div>
+      <div class="ml-25 montserrat">
+        <p>Category: {{ word.category_name }}</p>
+         <p>Definition: {{ word.word_definition }}</p>
+         <p>Word in sentence: {{ word.word_in_sentence }}</p>
+         <p>Associated Hashtags: {{ word.tags }}</p>
+         <p><em>by: {{ word.created_by }}</em></p>
+      </div>
+
+</div>
+ <div class="col l2 s4">
+          {% if session.user|lower == word.created_by|lower %}
+         
+         <div class="pt-20 center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Delete</a></div>
+         <div class="pt-20 center"><a href="{{ url_for('update_word', word_id=word._id) }}" class="btn-small pr-34 light-blue">Edit</a></div>
+        
+         {% endif %}
+         </div>
+</div>
 {% endfor %}
 {% else %}
 <h3 class="red-text text-darken-4 center-align">No results found</h3>

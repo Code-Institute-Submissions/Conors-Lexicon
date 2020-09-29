@@ -23,7 +23,11 @@ mongo = PyMongo(app)
 @app.route("/get_index")
 def get_dictionary():
     words = list(mongo.db.words.find())
-    return render_template("index.html", words=words)
+    words_rng = list([word for word in mongo.db.words.aggregate(
+        [{"$sample": {"size": 1}}])])
+
+    return render_template("index.html", words=words, words_rng=words_rng)
+
 
 @app.route("/how_it_works")
 def how_it_works():
@@ -93,6 +97,8 @@ def profile(username):
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+
+
     return render_template("profile.html", username=username)
 
 

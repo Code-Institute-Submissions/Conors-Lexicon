@@ -1,6 +1,6 @@
 /* Imported Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@300&family=Playfair+Display&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@500&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
 
 
@@ -15,9 +15,22 @@
 .montserrat {
     font-family:'Montserrat', Helvetica, sans-serif;
 }
+.Parisienne {
+    font-family:'Parisienne', cursive;
+    font-weight:500;
+    
+}
 
 /* colours */
 
+
+.blue {
+   background-color:#77A6F7;
+}
+
+.light-blue {
+    background-color: #d3e3fc;
+}
 .rose {
     background-color: #d83f87;
 }
@@ -31,10 +44,14 @@
 .white {
     background-color: #ffffff;
 }
+
 .light-purple {
     background-color:#e98074;
 }
+.purple {
 
+    background-color:#44318d;
+}
 /* margins */
 
 .mr-10 {
@@ -45,8 +62,8 @@
     margin-top:150px;
 }
 
-.pb-40 {
-    padding-bottom:40px;
+.pb-30 {
+    padding-bottom:30px;
 }
 .padding {
     padding-top:25px;
@@ -59,11 +76,35 @@
 .mb-100 {
     margin-bottom:100px;
 }
+
+.ml-25 {
+    margin-left:25px;
+}
+
+.pt-20 {
+
+    padding-top:20px;
+}
+
+.pr-34 {
+    padding-right:34px;
+}
+
+/** Index page **/
+.border-style {
+
+border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    margin: .5rem 0 1rem 0;
+}
 /* navbar */
 
 nav {
     line-height:normal;
-
+}
+nav .brand-logo {
+    font-size:50px;
 }
 .brand-logo {
     margin-left:30px;
@@ -118,25 +159,22 @@ nav ul a {
 
 .input-index {
     width: 350px;
-    height: 60px;
+    height:50px;
     padding: 10px;
     padding-left: 100px;
     border-radius: 10px;
-    
     border: none;
     color: white;
     font-size: 24px;
     font-family: "Dosis", sans-serif;
     outline:none;
 }
-.yt {
-    margin-left:100px;
-}
+
 .ico {
     position:absolute;
-    top: 15px;
-    color: white;
-    font-size: 28px;
+    top: 10px;
+    font-size: 24px;
+    color:#77a6fc;
 }
 
 .blink {
@@ -182,3 +220,4 @@ nav ul a {
   }
  
 }
+
