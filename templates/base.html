@@ -21,18 +21,18 @@
                <a href="{{ url_for('get_dictionary') }}" class="brand-logo Parisienne">Conor's Lexicon</a>
                 </div>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-               <ul class="col s6 lora hide-on-med-and-down" >
-               <li><a href="{{ url_for('how_it_works') }}">How it works</a></li>
+               <ul class="col s6 lora hide-on-med-and-down">              
+               <li><a href="{{ url_for('how_it_works') }}" class="navbar-link">How it works</a></li>
                   {% if session.user %}
-                  <li><a href="{{ url_for('add_word') }}">New Word</a></li>
-                  <li><a href="{{ url_for('get_dictionary') }}">Delete Word</a></li>
+                  <li><a href="{{ url_for('add_word') }}" class="navbar-link">New Word</a></li>
+                  <li><a href="{{ url_for('get_dictionary') }}" class="navbar-link">Delete Word</a></li>
                   {% if session.user|lower == "admin"|lower %}
                   {% endif %}
-                  <li><a href="{{ url_for('profile', username=session['user'] ) }}">Profile</a></li>
-                  <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                  <li><a href="{{ url_for('profile', username=session['user'] ) }}" class="navbar-link">Profile</a></li>
+                  <li><a href="{{ url_for('logout') }}" class="navbar-link">Log Out</a></li>
                   {% else %}
-                  <li><a href="{{ url_for('login') }}">Log in</a></li>
-                  <li><a href="{{ url_for('register') }}">Register</a></li>
+                  <li><a href="{{ url_for('login') }}" class="navbar-link">Log in</a></li>
+                  <li><a href="{{ url_for('register') }}" class="navbar-link browser-default" >Register</a></li>
                   {% endif %}
                </ul>
                
@@ -42,7 +42,7 @@
             <div class="row pb-30 top-nav-margin blue mt-15">
       <form action="{{ url_for('search')}}" method="post" class=" form  col s6 offset-s3 mt-15">
             <label for="query" class=""><span class="fas ico"></span></label>
-          <input type="text" name="query" id="query" minlength="3" class="validate browser-default white input-index" required>
+          <input type="text" name="query" id="query" minlength="3" class="validate browser-default input-index" required>
     
         
       </form>
@@ -71,13 +71,13 @@
       </header>
       <section>
          {% with messages = get_flashed_messages() %}
-         {% if messages %}
-         {% for message in messages %}
-         <div class="row flashes">
-            <h4 class="lighten-4 center-align">{{ message }}</h4>
+            {% if messages %}
+                {% for message in messages %}
+         <div class="row flashes mt-150">
+            <h4 class="center-align">{{ message }}</h4>
          </div>
-         {% endfor %}
-         {% endif %}
+                {% endfor %}
+            {% endif %}
          {% endwith %}
       </section>
       <main class="container mt-150">

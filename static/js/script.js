@@ -27,9 +27,20 @@ $(".ico").addClass("fa-minus blink rotate");
     $(".ico").addClass("fa-minus blink");
     $(".ico").removeClass("search");
   });
- 
 
- 
+
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {

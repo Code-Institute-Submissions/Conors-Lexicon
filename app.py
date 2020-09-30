@@ -79,6 +79,8 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("get_dictionary"))
+
             else:
 
                 flash("Incorrect Username and/or Password")
@@ -97,7 +99,6 @@ def profile(username):
 
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
 
     return render_template("profile.html", username=username)
 

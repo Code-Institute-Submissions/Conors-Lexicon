@@ -5,7 +5,7 @@
   <div class="row mb-100">
     <div class="col s12">
       <div class="card-panel teal mt-word-of-day white-text">
-      <h4>You might enjoy this</h4>
+      <h4>Word of the day</h4>
             <div class="ml-25 pt-20 lora">
          <strong>{{ word.word_name }}</strong>
       </div>
@@ -28,30 +28,49 @@
 <div class=" col l10 s8 ">
 
       <div class="ml-25 pt-20 lora">
-         <strong>{{ word.word_name }}</strong>
+         <p type="text" value="{{ word.word_name }}" id="myInput">{{ word.word_name }}</p>
       </div>
       <div class="ml-25 montserrat">
-        <p>Category: {{ word.category_name }}</p>
+        <p id="copy-text" type="text">Category: {{ word.category_name }}</p>
          <p>Definition: {{ word.word_definition }}</p>
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
          <p>Associated Hashtags: {{ word.tags }}</p>
          <p><em>by: {{ word.created_by }}</em></p>
       </div>
+      
 
 </div>
  <div class="col l2 s4">
+         <button onclick="myFunction()"  class=" center btn-small light-blue">Copy text</button>
           {% if session.user|lower == word.created_by|lower %}
-         
-         <div class="pt-20 center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Delete</a></div>
+             <div class="pt-20 center"><a href="#modal{{ word._id }}" class="btn-small light-blue modal-trigger">Delete</a></div>
          <div class="pt-20 center"><a href="{{ url_for('update_word', word_id=word._id) }}" class="btn-small pr-34 light-blue">Edit</a></div>
+
+
+        <div id="modal{{ word._id }}" class="modal">
+    <div class="modal-content">
+      <h4>Are you sure you want to delete this word?</h4>
+      <div class="pt-20 center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a></div>
+    </div>
+    <div class="modal-footer">
+      <a href="" class="modal-close waves-effect waves-green btn-flat">No</a>
+    </div>
+  </div>
+
+  
         
          {% endif %}
          </div>
 </div>
 {% endfor %}
 {% else %}
-<h3 class="red-text text-darken-4 center-align">No results found</h3>
+
+  <!-- Modal Trigger <div class="pt-20 center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Delete</a></div> -->
+  
 {% endif %}
 
 {% endblock %}
+
+ 
+         
 

@@ -106,6 +106,10 @@ nav {
 nav .brand-logo {
     font-size:50px;
 }
+
+.navbar-link:active {
+    text-decoration: underline;
+}
 .brand-logo {
     margin-left:30px;
 }
@@ -164,7 +168,7 @@ nav ul a {
     padding-left: 100px;
     border-radius: 10px;
     border: none;
-    color: white;
+    color:black;
     font-size: 24px;
     font-family: "Dosis", sans-serif;
     outline:none;
