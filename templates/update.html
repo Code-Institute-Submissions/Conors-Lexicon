@@ -17,7 +17,7 @@
                {% endif %}
                {% endfor %}
             </select>
-            <label>Word Category</label>
+            <label>Word Category*</label>
          </div>
       </div>
       <div class="row">
@@ -25,7 +25,7 @@
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
             <input id="word_name" name="word_name" minlength="2" maxlength="50"
                value="{{ word.word_name }}" type="text" class="validate" required>
-            <label for="word_name">Word Name</label>
+            <label for="word_name">Word Name*</label>
          </div>
       </div>
       <div class="row">
@@ -33,14 +33,14 @@
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
             <input id="word_definition" name="word_definition" minlength="5" maxlength="50"
                value="{{ word.word_definition }}" type="text" class="validate" required>
-            <label for="word_definition">Word Definition</label>
+            <label for="word_definition">Word Definition*</label>
          </div>
       </div>
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
             <input id="word_in_sentence" name="word_in_sentence" minlength="5" maxlength="50"
-               value="{{ word.word_in_sentence }}"  type="text" class="validate" required>
+               value="{{ word.word_in_sentence }}"  type="text" class="validate">
             <label for="word_in_sentence">Word Used in Sentence</label>
          </div>
       </div>

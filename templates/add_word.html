@@ -13,7 +13,7 @@
                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                {% endfor %}
             </select>
-            <label>Word Category</label>
+            <label>Word Category*</label>
          </div>
       </div>
       <div class="row">
@@ -21,7 +21,7 @@
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
             <input id="word_name" name="word_name" minlength="3" maxlength="50"
                type="text" class="validate" required>
-            <label for="word_name">Word Name</label>
+            <label for="word_name">Word Name*</label>
          </div>
       </div>
       <div class="row">
@@ -29,14 +29,14 @@
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
             <input id="word_definition" name="word_definition" minlength="5" maxlength="500"
                type="text" class="validate" required>
-            <label for="word_definition">Word Definition</label>
+            <label for="word_definition">Word Definition*</label>
          </div>
       </div>
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
             <input id="word_in_sentence" name="word_in_sentence" minlength="2" maxlength="700"
-               type="text" class="validate" required>
+               type="text" class="validate">
             <label for="word_in_sentence">Word Used in Sentence</label>
          </div>
       </div>
@@ -51,7 +51,7 @@
       <div class="row">
          <div class="col s12 center-align">
             <button type="submit" class="btn-large light-blue">
-            Add Word <i class="fas fa-plus-square right"></i>
+            Add Word
             </button>
          </div>
       </div>
