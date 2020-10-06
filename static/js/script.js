@@ -3,6 +3,7 @@ $(document).ready(function () {
     $(".collapsible").collapsible();
     $(".tooltipped").tooltip();
     $("select").formSelect();
+    $('textarea#word_in_sentence, textarea#word_definition').characterCounter();
     $(".datepicker").datepicker({
         format: "dd mmmm, yyyy",
         yearRange: 3,
@@ -28,14 +29,6 @@ $(".ico").addClass("fa-minus blink rotate");
     $(".ico").removeClass("search");
   });
 
-
-function myFunction() {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999)
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
 
 $(document).ready(function(){
     $('.modal').modal();

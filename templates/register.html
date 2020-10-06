@@ -3,11 +3,11 @@
 
 <div class="row">
    <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('register') }}">
-      <div class="card-panel teal">
+      <div class="card-panel">
          <div class="row">
             <div class="input-field col s12">
                <i class="fas fa-user-plus prefix light-blue-text"></i>
-               <input id="name" name="name" pattern="^[a-zA-Z0-9{8,30}" type="text" minlength="5" maxlength="30" class="validate" required>
+               <input id="name" name="name" pattern="^[a-zA-Z0-9{8,30}" type="text" minlength="5" maxlength="30" class="validate" data-length="100" required>
                <label for="name">Name</label>
             </div>
          </div>
@@ -15,28 +15,28 @@
          <div class="row">
             <div class="input-field col s12">
                <i class="fas fa-users prefix light-blue-text"></i>
-               <input id="username" name="username" pattern="^[a-zA-Z0-9{8,30}" type="text" minlength="5" maxlength="30" class="validate" required>
+               <input id="username" name="username" pattern="^[a-zA-Z0-9{8,30}" type="text" minlength="5" maxlength="30" class="validate" data-length="25" required>
                <label for="username">User Name</label>
             </div>
          </div>
          <div class="row">
             <div class="input-field col s12">
                <i class="far fa-envelope-open prefix light-blue-text"></i>
-               <input id="email" name="email" pattern="^[a-zA-Z0-9{8,30}" type="email" minlength="5" maxlength="30" class="validate" required>
+               <input id="email" name="email" pattern="^[a-zA-Z0-9{8,30}" type="email" minlength="5" maxlength="30" class="validate" data-length="75" required>
                <label for="email">Email Address</label>
             </div>
          </div>
          <div class="row">
          <div class="input-field col s12">
          <i class="fas fa-globe-europe prefix light-blue-text"></i>
-    <select>
+    <select id="location" name="location">
       <option value="" disabled selected>Choose your Contintent</option>
-      <option value="1">Europe</option>
-      <option value="2">North America</option>
-      <option value="3">South America</option>
-      <option value="4">Asia</option>
-      <option value="5">Africa</option>
-      <option value="6">Indonesia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+      <option value="Asia">Asia</option>
+      <option value="Africa">Africa</option>
+      <option value="Indonesia">Indonesia</option>
     </select>
     
     <label>Contintent of Residence</label>
@@ -45,14 +45,14 @@
          <div class="row">
             <div class="input-field col s12">
                <i class="fas fa-user-lock prefix light-blue-text"></i>
-               <input id="password" name="password" pattern="^[a-zA-Z0-9{8,30}" type="password" minlength="5" maxlength="30" class="validate" required>
+               <input id="password" name="password" pattern="^[a-zA-Z0-9{8,30}" type="password" minlength="5" maxlength="30" class="validate" data-length="100" required>
                <label for="password">Password</label>
             </div>
          </div>
          <div class="row">
             <div class="input-field col s12">
                <i class="fas fa-user-lock prefix light-blue-text"></i>
-               <input id="passwordConfirm" name="passwordConfirm" pattern="^[a-zA-Z0-9{8,30}" type="password" minlength="5" maxlength="30" class="validate" required>
+               <input id="passwordConfirm" name="passwordConfirm" pattern="^[a-zA-Z0-9{8,30}" type="password" minlength="5" maxlength="30" class="validate" data-length="100" required>
                <label for="passwordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
             </div>
          </div>

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+
 {% for word in words_rng %}
   <div class="row mb-100">
     <div class="col s12">
@@ -20,15 +22,22 @@
     </div>
   </div>
 {% endfor %}
-
-
 {% if words|length > 0 %}
 {% for word in words %}
+<script>
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+  alert("Word Copied");
+}
+</script>
 <div class="row border-style beige">
 <div class=" col l10 s8 ">
-
       <div class="ml-25 pt-20 lora">
-         <p type="text" value="{{ word.word_name }}" id="myInput">{{ word.word_name }}</p>
+         <p id="copyword">{{ word.word_name }}</p>
       </div>
       <div class="ml-25 montserrat">
         <p id="copy-text" type="text">Category: {{ word.category_name }}</p>
@@ -37,11 +46,9 @@
          <p>Associated Hashtags: {{ word.tags }}</p>
          <p><em>by: {{ word.created_by }}</em></p>
       </div>
-      
-
 </div>
  <div class="col l2 s4">
-         <button onclick="myFunction()"  class=" center btn-small light-blue">Copy text</button>
+         <button onclick="copyToClipboard('#copyword')"  class=" center btn-small light-blue">Copy text</button>
           {% if session.user|lower == word.created_by|lower %}
              <div class="pt-20 center"><a href="#modal{{ word._id }}" class="btn-small light-blue modal-trigger">Delete</a></div>
          <div class="pt-20 center"><a href="{{ url_for('update_word', word_id=word._id) }}" class="btn-small pr-34 light-blue">Edit</a></div>
@@ -65,7 +72,7 @@
 {% endfor %}
 {% else %}
 
-  <!-- Modal Trigger <div class="pt-20 center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Delete</a></div> -->
+  
   
 {% endif %}
 

@@ -31,23 +31,23 @@
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-            <input id="word_definition" name="word_definition" minlength="5" maxlength="50"
-               value="{{ word.word_definition }}" type="text" class="validate" required>
+            <textarea id="word_definition" name="word_definition" minlength="5" maxlength="300"  data-length="300"
+                type="text" class="validate materialize-textarea" required>{{ word.word_definition }}</textarea>
             <label for="word_definition">Word Definition*</label>
          </div>
       </div>
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-            <input id="word_in_sentence" name="word_in_sentence" minlength="5" maxlength="50"
-               value="{{ word.word_in_sentence }}"  type="text" class="validate">
+            <textarea id="word_in_sentence" name="word_in_sentence" minlength="5" maxlength="600"
+               type="text" class="validate materialize-textarea">{{ word.word_in_sentence }}</textarea>
             <label for="word_in_sentence">Word Used in Sentence</label>
          </div>
       </div>
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-            <input id="tags" name="tags" minlength="1" maxlength="50"
+            <input id="tags" name="tags" minlength="1" maxlength="20"
                value="{{ word.tags }}" type="text" class="validate">
             <label for="tags">Tags</label>
          </div>

@@ -56,6 +56,7 @@ def register():
             "name": request.form.get("name").lower(),
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
+            "location": request.form.get("location"),
 
             "password": generate_password_hash(request.form.get("password"))
         }
@@ -98,7 +99,8 @@ def login():
 def profile(username):
     words = list(mongo.db.words.find())
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        {"username": session["user"]})
+
 
     return render_template("profile.html", username=username, words=words)
 

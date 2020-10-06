@@ -25,10 +25,9 @@
                <li><a href="{{ url_for('how_it_works') }}" class="navbar-link">How it works</a></li>
                   {% if session.user %}
                   <li><a href="{{ url_for('add_word') }}" class="navbar-link">New Word</a></li>
-                  <li><a href="{{ url_for('get_dictionary') }}" class="navbar-link">Delete Word</a></li>
                   {% if session.user|lower == "admin"|lower %}
                   {% endif %}
-                  <li><a href="{{ url_for('profile', username=session['user'] ) }}" class="navbar-link">Profile</a></li>
+                  <li><a href="{{ url_for('profile', username=session['user']  ) }}" class="navbar-link">Profile</a></li>
                   <li><a href="{{ url_for('logout') }}" class="navbar-link">Log Out</a></li>
                   {% else %}
                   <li><a href="{{ url_for('login') }}" class="navbar-link">Log in</a></li>
@@ -114,6 +113,7 @@
             </div>
           </div>
         </footer>
+
       {% block scripts %}
       {% endblock %}
    </body>

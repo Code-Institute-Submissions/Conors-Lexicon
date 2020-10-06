@@ -4,12 +4,14 @@
    <div class="col s12 m8 offset-m2">
       <div class="card-panel">
          <h3 class="center-align light-blue-text text-darken 4">
-            {{ username }}'s Profile
-            {{ name }}
+            {{ username.username }}'s Profile
+            {{ username.name }}
+            {{ username.email }} 
+            {{ username.location }} 
         
          </h3>
          
-            {{ email }} 
+            
       </div>  
    </div>
 </div>
@@ -20,10 +22,10 @@
 <div class=" col l10 s8 ">
 
       <div class="ml-25 pt-20 lora">
-         <p type="text" value="{{ word.word_name }}" id="myInput">{{ word.word_name }}</p>
+         <p id="copyt">{{ word.word_name }}</p>
       </div>
       <div class="ml-25 montserrat">
-        <p id="copy-text" type="text">Category: {{ word.category_name }}</p>
+        <p>Category: {{ word.category_name }}</p>q
          <p>Definition: {{ word.word_definition }}</p>
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
          <p>Associated Hashtags: {{ word.tags }}</p>
@@ -33,7 +35,7 @@
 
 </div>
  <div class="col l2 s4">
-         <button onclick="myFunction()"  class=" center btn-small light-blue">Copy text</button>
+         <button onclick="copyToClipboard('#copyt')"  class=" center btn-small light-blue">Copy text</button>
           {% if session.user|lower == word.created_by|lower %}
              <div class="pt-20 center"><a href="#modal{{ word._id }}" class="btn-small light-blue modal-trigger">Delete</a></div>
          <div class="pt-20 center"><a href="{{ url_for('update_word', word_id=word._id) }}" class="btn-small pr-34 light-blue">Edit</a></div>
