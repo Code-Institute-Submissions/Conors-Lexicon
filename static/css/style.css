@@ -73,6 +73,9 @@
 .mt-15 {
     margin-top:15px;
 }
+.mt-35 {
+    margin-top:35px;
+}
 .mb-100 {
     margin-bottom:100px;
 }
@@ -89,6 +92,19 @@
 .pr-34 {
     padding-right:34px;
 }
+
+.pr-30 {
+    padding-right:30px;
+}
+
+.border-black {
+
+    box-shadow: 1 1 1px rgba(0, 0, 0, 0);
+        transform:none;
+}
+
+
+
 
 /** Index page **/
 .border-style {

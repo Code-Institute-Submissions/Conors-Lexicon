@@ -96,6 +96,41 @@ good too.
 
 # Testing
 
+As a user, I want to register an account
+
+1. If you're already logged in, click on log out on nav bar. Skip this step if you're not logged in.
+2. Click on register on the nav bar.
+3. Fill out the form in many different varations, such as forgetting the @ in email address, using a different confirmed password to confirmed etc
+4. Click on register
+5. repeat these steps over and over to test defensive programming, also do the same on Opera and Firefox.
+
+Results: Failure, confirmed password doesnt have to be the same as password, thus making it redundant.
+
+As a user, I want to log into an existing account
+
+1. If you're already logged in, click on log out on nav bar. Skip this step if you're not logged in.
+2. Click on Login in on the navbar,
+3. Enter the correct Username and pasword and Log in.
+4. repeat steps 1 and 2, now enter an incorrect username and/or password.
+
+Results: Success, you are only logged in with both correct username and password with the appropriate flash message displaying if you succeeded or failed. However, I noticed that after logging in, it would be better to render the Index page instead of going back 
+to the Login.
+
+As a user, I want to delete a word 
+
+1. If you're not already logged in, do so by clicking the nav link and filling out the form correctly.
+2. If you have not done so already, create a word by clicking on new word and filling out the form and its fields. You can only delete words that you've made yourself, unless you're logged in as admin.
+2. Search for words you're able to delete (ie. ones you've made yourself) either by using the search index or clicking on your profile.
+4. Click on the delete button.
+5. Ensure its deleted by searching for it in the index, checking your profile or looking at the words collection in MongoDB.
+
+Results: Success, however there is a lack of defensive programming here, it's possible to accidently hit delete and have your word removed without you intending to do that. The delete button now calls for a modal where clicking on the yes button will delete the word.
+
+
+
+
+
+
 # Deployment
 
 
