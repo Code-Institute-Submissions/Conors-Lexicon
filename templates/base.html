@@ -17,14 +17,13 @@
       <header>
       <div class="navbar-fixed ">
          <nav class="nav-center nav-extended ">
-            <div class="nav-wrapper padding blue">
+            <div class="nav-wrapper padding-nav blue">
             <div class="row top-nav-margin">
             <div class="col m6 offset-m3 l3 pt-20">
                <a href="{{ url_for('get_dictionary') }}" class="brand-logo Parisienne">Conor's Lexicon</a>
                 </div>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                <ul class="col s6 lora hide-on-med-and-down">              
-               <li><a href="{{ url_for('how_it_works') }}" class="navbar-link">How it works</a></li>
                   {% if session.user %}
                   <li><a href="{{ url_for('add_word') }}" class="navbar-link">New Word</a></li>
                   {% if session.user|lower == "admin"|lower %}

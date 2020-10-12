@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@500&family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
-
-
 /* Fonts */
 
 .lora {
@@ -18,11 +16,8 @@
 .Parisienne {
     font-family:'Parisienne', cursive;
     font-weight:500;
-    
 }
-
 /* colours */
-
 
 .blue {
    background-color:#77A6F7;
@@ -52,12 +47,12 @@
 
     background-color:#44318d;
 }
+
 /* margins */
 
 .mr-10 {
     margin-left:10px;
 }
-
 .mt-150 {
     margin-top:150px;
 }
@@ -65,11 +60,14 @@
 .pb-30 {
     padding-bottom:30px;
 }
-.padding {
+.padding-nav {
     padding-top:25px;
     padding-bottom:15px;
 }
-
+.top-nav-margin {
+    margin-bottom:0px;
+    margin-top:0px;
+}
 .mt-15 {
     margin-top:15px;
 }
@@ -79,13 +77,10 @@
 .mb-100 {
     margin-bottom:100px;
 }
-
 .ml-25 {
     margin-left:25px;
 }
-
 .pt-20 {
-
     padding-top:20px;
 }
 
@@ -97,22 +92,24 @@
     padding-right:30px;
 }
 
-.border-black {
-
-    box-shadow: 1 1 1px rgba(0, 0, 0, 0);
-        transform:none;
+.welcome-margins {
+    margin:75px 0px 125px 0px;
 }
 
-
-
-
 /** Index page **/
+
 .border-style {
 
-border-top: 1px solid #ddd;
+    border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-left: 1px solid #ddd;
     margin: .5rem 0 1rem 0;
+}
+.font-size-20 {
+    font-size:20px;
+}
+.font-weight-600 {
+    font-weight:600;
 }
 /* navbar */
 
@@ -122,7 +119,6 @@ nav {
 nav .brand-logo {
     font-size:50px;
 }
-
 .navbar-link:active {
     text-decoration: underline;
 }
@@ -132,12 +128,11 @@ nav .brand-logo {
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
-
 .flashes h4 {
     line-height: 2;
 }
 nav.nav-center ul {
-     text-align:center; 
+    text-align:center; 
 }
 nav.nav-center ul li {
     display: inline;
@@ -146,7 +141,6 @@ nav.nav-center ul li {
 nav.nav-center ul li a {
     display: inline-block;
 }
-
 nav ul a {
     padding-right:10px;
     font-size: 12px;
@@ -154,29 +148,17 @@ nav ul a {
 .btn-small {
     margin: 5px;
 }
-
-.top-nav-margin {
-    margin-bottom:0px;
-    margin-top:0px;
-}
-
-
-.remove-shadow {
-    box-shadow:none;
-    -webkit-box-shadow:none;
-}
-
 .collapsible-header .col strong {
     margin: 5px;
     line-height: 42px;
 }
+/* Taken from freefrontend.com */
 .form {
     position: relative;
     display:flex;
     justify-content: center;
     align-items:center;
 }
-
 .input-index {
     width: 350px;
     height:50px;
@@ -189,24 +171,20 @@ nav ul a {
     font-family: "Dosis", sans-serif;
     outline:none;
 }
-
 .ico {
     position:absolute;
     top: 10px;
     font-size: 24px;
     color:#77a6fc;
 }
-
 .blink {
     transform: rotate(90deg);
     animation: outFocus 1s infinite ease-in-out;
 }
-
 .search {
     transition: 1s;
     animation: onFocus 1s 1 ease-in-out;
 }
-
 @keyframes outFocus {
     to {
         opacity: 0;
@@ -215,7 +193,6 @@ nav ul a {
         opacity: 1;
     }
 }
-
 @keyframes onFocus {
     to {
         transform: rotateY(0deg);
@@ -232,12 +209,9 @@ nav ul a {
       text-align:center;
       margin-left:0px;
   }
- 
 }
 @media only screen and (max-width: 463px) {
   nav .brand-logo{
       font-size:26px;
   }
- 
 }
-

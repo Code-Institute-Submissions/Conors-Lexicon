@@ -2,17 +2,27 @@
 {% block content %}
 <div class="row">
    <div class="col s12 m8 offset-m2">
-      <div class="card-panel">
-         <h3 class="center-align light-blue-text text-darken 4">
+         <h3 class="center-align light-blue-text playfair-display ">
             {{ username.username }}'s Profile
-            {{ username.name }}
-            {{ username.email }} 
-            {{ username.location }} 
-        
          </h3>
-         
+         <ul class="collection montserrat">
+    <li class="collection-item ">
+      <span class="title lora">Name:</span>
+      <p>{{ username.name }}</p>
+    </li>
+    <li class="collection-item">
+      <span class="title lora">Email:</span>
+      <p> {{ username.email }} </p>
+    </li>
+    <li class="collection-item">
+      <span class="title lora">Location:</span>
+      <p>{{ username.location }}</p>
+    </li>
+    <li class="collection-item center">
+      <a href="{{ url_for('update_user', user_id=username._id) }}" class=" center hvr-shrink btn-small  light-blue">Edit</a>
+    </li>
+  </ul>
             
-      </div>  
    </div>
 </div>
 

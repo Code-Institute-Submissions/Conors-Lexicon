@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="row welcome-margins ">
+<div class="col8 offset2">
+<h2 class="center playfair-display">Welcome to Conor's Lecxicon!</h2>
+<p class="montserrat">Here, you are able to see user submitted words by typing  its name, definition or a tag into the search bar. Register an account now to create your own!</p>
 
+</div>
+</div>
 
 {% for word in words_rng %}
   <div class="row mb-100">
@@ -22,6 +28,11 @@
     </div>
   </div>
 {% endfor %}
+<div class="row">
+<div class="col8 offset2">
+<h4> Here are the top 10 words of this month</h4>
+</div>
+</div>
 {% if words|length > 0 %}
 {% for word in words %}
 <script>
@@ -37,13 +48,13 @@ function copyToClipboard(element) {
 <div class="row border-style beige">
 <div class=" col l10 s8 ">
       <div class="ml-25 pt-20 lora">
-         <p id="copyword">{{ word.word_name }}</p>
+         <p id="copyword" class="font-size-20">{{ word.word_name }}</p>
       </div>
       <div class="ml-25 montserrat">
-        <p id="copy-text" type="text">Category: {{ word.category_name }}</p>
+        <p id="copy-text" type="text" class="font-weight-600">Category: {{ word.category_name }}</p>
          <p>Definition: {{ word.word_definition }}</p>
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
-         <p>Associated Hashtags: {{ word.tags }}</p>
+         <p>Associated Hashtag: {{ word.tags }}</p>
          <p><em>by: {{ word.created_by }}</em></p>
       </div>
 </div>

@@ -1,25 +1,11 @@
 $(document).ready(function () {
     $(".sidenav").sidenav({edge: "right"});
     $(".collapsible").collapsible();
+    $('.modal').modal();
+    $('.dropdown-trigger').dropdown();
     $(".tooltipped").tooltip();
     $("select").formSelect();
-    $('textarea#word_in_sentence, textarea#word_definition').characterCounter();
-    $(".datepicker").datepicker({
-        format: "dd mmmm, yyyy",
-        yearRange: 3,
-        showClearBtn: true,
-        i18n: {
-            done: "Select"
-        }
-    });
-
-    
-});
-
- $('.dropdown-trigger').dropdown();
-
-$(document).ready(function(){
-$(".ico").addClass("fa-minus blink rotate");
+    $(".ico").addClass("fa-minus blink rotate");
   $("input").focus(function () {
     $(".ico").addClass("fa-search search");
     $(".ico").removeClass("fa-minus blink");
@@ -27,13 +13,8 @@ $(".ico").addClass("fa-minus blink rotate");
   $("input").focusout(function () {
     $(".ico").addClass("fa-minus blink");
     $(".ico").removeClass("search");
-  });
-
-
-$(document).ready(function(){
-    $('.modal').modal();
-  });
-
+    $('textarea#word_in_sentence, textarea#word_definition').characterCounter();
+});
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {

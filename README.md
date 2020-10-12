@@ -3,7 +3,7 @@
 Conor's Lexicon is a website that is dedicated to those who want to create new Words, Idioms, proverbs etc and share their creation to the rest of the world in the hopes of their world going viral.The website allows people to create
 a dictionary that anyone with a user profile is able to use use CRUD (create, read, update, delete) to enrich the database that is supported by MongoDB.
 
-The Admin is able to use CRUD on all words, while other users can only update and delete words that they've made themselves.
+The Admin account is able to use CRUD on all words, while other users can only update and delete words that they've made themselves. The Log in details for this account is username "admin" and password "admin123".
 
 
 # UX 
@@ -38,7 +38,7 @@ click the edit button at the end of the form. Alternatively, the user can click 
 
 **Search Index:** This allows for read users to search for the word that they want, be it through the name, the category, its definition or an associated tag.
 
-**Footer**:
+**Footer:** At the end of the wepage, you have 
 
 
 ### On index page 
@@ -96,7 +96,7 @@ good too.
 
 # Testing
 
-As a user, I want to register an account
+**As a user, I want to register an account:**
 
 1. If you're already logged in, click on log out on nav bar. Skip this step if you're not logged in.
 2. Click on register on the nav bar.
@@ -104,19 +104,19 @@ As a user, I want to register an account
 4. Click on register
 5. repeat these steps over and over to test defensive programming, also do the same on Opera and Firefox.
 
-Results: Failure, confirmed password doesnt have to be the same as password, thus making it redundant.
+*Results:* Failure, confirmed password doesnt have to be the same as password, thus making it redundant.
 
-As a user, I want to log into an existing account
+**As a user, I want to log into an existing account:**
 
 1. If you're already logged in, click on log out on nav bar. Skip this step if you're not logged in.
 2. Click on Login in on the navbar,
 3. Enter the correct Username and pasword and Log in.
 4. repeat steps 1 and 2, now enter an incorrect username and/or password.
 
-Results: Success, you are only logged in with both correct username and password with the appropriate flash message displaying if you succeeded or failed. However, I noticed that after logging in, it would be better to render the Index page instead of going back 
+*Results:* Success, you are only logged in with both correct username and password with the appropriate flash message displaying if you succeeded or failed. However, I noticed that after logging in, it would be better to render the Index page instead of going back 
 to the Login.
 
-As a user, I want to delete a word 
+**As a user, I want to delete a word:**
 
 1. If you're not already logged in, do so by clicking the nav link and filling out the form correctly.
 2. If you have not done so already, create a word by clicking on new word and filling out the form and its fields. You can only delete words that you've made yourself, unless you're logged in as admin.
@@ -124,7 +124,7 @@ As a user, I want to delete a word
 4. Click on the delete button.
 5. Ensure its deleted by searching for it in the index, checking your profile or looking at the words collection in MongoDB.
 
-Results: Success, however there is a lack of defensive programming here, it's possible to accidently hit delete and have your word removed without you intending to do that. The delete button now calls for a modal where clicking on the yes button will delete the word.
+*Results:* Success, however there is a lack of defensive programming here, it's possible to accidently hit delete and have your word removed without you intending to do that. The delete button now calls for a modal where clicking on the yes button will delete the word.
 
 
 
@@ -155,13 +155,3 @@ Results: Success, however there is a lack of defensive programming here, it's po
 
 * Code institute will be thanked again as the newly updated video series gave me the idea to make the Registration page, Login page and also the profile page.
 
-
-
-
-
-
-
-
-
-
-admin password:admin123

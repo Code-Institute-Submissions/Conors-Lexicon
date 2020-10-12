@@ -29,11 +29,6 @@ def get_dictionary():
     return render_template("index.html", words=words, words_rng=words_rng)
 
 
-@app.route("/how_it_works")
-def how_it_works():
-    return render_template("howitworks.html")
-
-
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -101,7 +96,6 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})
 
-
     return render_template("profile.html", username=username, words=words)
 
 
@@ -147,10 +141,28 @@ def update_word(word_id):
         }
         mongo.db.words.update({"_id": ObjectId(word_id)}, submit)
         flash("Word Successfully Updated")
+        return redirect(url_for("get_dictionary"))
 
     word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
     word_type = mongo.db.word_type.find().sort("category_name", 1)
     return render_template("update.html", word=word, word_type=word_type)
+
+
+@app.route("/update_user/<user_id>", methods=["GET", "POST"])
+def update_user(user_id):
+    if request.method == "POST":
+
+        submit = {
+            "name": request.form.get("name"),
+            "email": request.form.get("email"),
+            "location": request.form.get("location")
+        }
+        user_id = mongo.db.users.find_one({"user_id": ObjectId(user_id)})
+        mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
+        flash("Your Profile details have been changed")
+        return redirect(url_for("get_dictionary"))
+
+    return render_template("update-user.html", user_id=user_id)
 
 
 @app.route("/delete_word/<word_id>")
