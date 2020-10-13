@@ -22,7 +22,8 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route("/get_index")
 def get_dictionary():
-    words = list(mongo.db.words.find())
+    words = list([word for word in mongo.db.words.aggregate(
+        [{"$sample": {"size": 10}}])])
     words_rng = list([word for word in mongo.db.words.aggregate(
         [{"$sample": {"size": 1}}])])
 
@@ -52,10 +53,17 @@ def register():
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
             "location": request.form.get("location"),
-
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "passwordConfirm": generate_password_hash(request.form.get("password"))
         }
-        mongo.db.users.insert_one(register)
+        if "password" == "passwordConfirm":
+            mongo.db.users.insert_one(register)
+
+        else:
+            flash("Passwords do not match")
+            return redirect(url_for("register"))
+
+    
 
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
@@ -154,15 +162,19 @@ def update_user(user_id):
 
         submit = {
             "name": request.form.get("name"),
+            "username": request.form.get("username").lower(),
             "email": request.form.get("email"),
-            "location": request.form.get("location")
+            "location": request.form.get("location"),
+            "password": generate_password_hash(request.form.get("password"))
         }
-        user_id = mongo.db.users.find_one({"user_id": ObjectId(user_id)})
+
         mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
+        session["user"] = request.form.get("username").lower()
         flash("Your Profile details have been changed")
         return redirect(url_for("get_dictionary"))
 
-    return render_template("update-user.html", user_id=user_id)
+    user_update = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    return render_template("update-user.html", user_update=user_update)
 
 
 @app.route("/delete_word/<word_id>")

@@ -104,7 +104,19 @@ good too.
 4. Click on register
 5. repeat these steps over and over to test defensive programming, also do the same on Opera and Firefox.
 
-*Results:* Failure, confirmed password doesnt have to be the same as password, thus making it redundant.
+*Results:* Failure, confirmed password doesnt have to be the same as password, thus making it redundant. I decided to use an if statement to check if the two fields are the same. If they are, the user will be created. Otherwise, you'll get an error message 
+stating that the passwords do not match.
+
+``` python
+
+if "password" == "passwordConfirm":
+            mongo.db.users.insert_one(register)
+
+        else:
+            flash("Passwords do not match")
+            return redirect(url_for("register"))
+
+````
 
 **As a user, I want to log into an existing account:**
 
@@ -127,7 +139,22 @@ to the Login.
 *Results:* Success, however there is a lack of defensive programming here, it's possible to accidently hit delete and have your word removed without you intending to do that. The delete button now calls for a modal where clicking on the yes button will delete the word.
 
 
+**As a user, I want to update my profile:** 
 
+1. If you're not already logged in, do so by clicking the nav link and filling out the form correctly.
+2. Click  profile page in the nav links.
+3. Underneath your profile details, click on the edit button.
+4. Change the details in all fields and submit form.
+5. Now check the profile page again and see if the details updated. Check MongoDB user collection aswell.
+
+*Results:* Failure, while im still logged in I cant see any details displaying and clicking on the edit button again gives me a url page not found error. However, on MongoDB my profile is updated. When I make a new word it actually says its created by the older username.
+ I logged out and back in under the new username and password and it worked, giving me the new details. I realised I needed to update the cookies when changing the user details, so I added this line of python code in the update_user function. It fixed my problem.
+
+``` python
+
+session["user"] = request.form.get("username").lower()
+
+````
 
 
 

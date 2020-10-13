@@ -25,7 +25,7 @@
             
    </div>
 </div>
-
+<h4>Here are a list of words that you've created</h4>
 {% for word in words %}
 {% if session.user|lower == word.created_by|lower %}
 <div class="row border-style beige">
@@ -60,7 +60,6 @@
       <a href="" class="modal-close waves-effect waves-green btn-flat">No</a>
     </div>
   </div>
-
   
         
          {% endif %}
