@@ -37,8 +37,12 @@
       <div class="ml-25 montserrat">
         <p>Category: {{ word.category_name }}</p>q
          <p>Definition: {{ word.word_definition }}</p>
+         {% if word.word_in_sentence|length > 0 %}
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
-         <p>Associated Hashtags: {{ word.tags }}</p>
+         {% endif %}
+         {% if word.tags|length > 0 %}
+         <p>Associated Hashtag: {{ word.tags }}</p>
+         {% endif %}
          <p><em>by: {{ word.created_by }}</em></p>
       </div>
       

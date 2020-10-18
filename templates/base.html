@@ -20,7 +20,7 @@
             <div class="nav-wrapper padding-nav blue">
             <div class="row top-nav-margin">
             <div class="col m6 offset-m3 l3 pt-20">
-               <a href="{{ url_for('get_dictionary') }}" class="brand-logo Parisienne">Conor's Lexicon</a>
+               <a href="{{ url_for('home') }}" class="brand-logo Parisienne">Conor's Lexicon</a>
                 </div>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                <ul class="col s6 lora hide-on-med-and-down">              
@@ -54,11 +54,10 @@
          <ul class="sidenav" id="mobile-demo">
             <li>
                <li><h4 class="center-align light-blue-text text-darken 4">Dictionary Manager</h4></li>
-               <a href="{{ url_for('get_dictionary') }}" class="brand-logo lora">Conor's Lexicon</a>
+               <a href="{{ url_for('home') }}" class="brand-logo lora">Conor's Lexicon</a>
             </li>
             {% if session.user %}
             <li><a href="{{ url_for('add_word') }}">New Word</a></li>
-            <li><a href="{{ url_for('get_dictionary') }}">Delete Word</a></li>
             {% if session.user|lower == "admin"|lower %}
             {% endif %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
@@ -73,14 +72,14 @@
          {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-         <div class="row flashes mt-150">
+         <div class="row flashes mt-225">
             <h4 class="center-align">{{ message }}</h4>
          </div>
                 {% endfor %}
             {% endif %}
          {% endwith %}
       </section>
-      <main class="container mt-150">
+      <main class="container mt-225">
          {% block content %}
          {% endblock %}
       </main>
@@ -89,12 +88,12 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-      <footer class="page-footer blue mt-150">
+      <footer class="page-footer blue mt-225">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text lora">Footer Content</h5>
-                <p class="grey-text text-lighten-4 lora">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text lora"><a href = "{{ url_for('home') }}">Conors Lexicon</a></h5>
+                <p class="grey-text text-lighten-4 lora">The journey of a thousand miles begins with a step</p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>

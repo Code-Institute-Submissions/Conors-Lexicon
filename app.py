@@ -20,8 +20,8 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route("/get_index")
-def get_dictionary():
+@app.route("/home")
+def home():
     words = list([word for word in mongo.db.words.aggregate(
         [{"$sample": {"size": 10}}])])
     words_rng = list([word for word in mongo.db.words.aggregate(
@@ -34,7 +34,14 @@ def get_dictionary():
 def search():
     query = request.form.get("query")
     words = list(mongo.db.words.find({"$text": {"$search": query}}))
-    return render_template("index.html", words=words)
+    if len(words) == 0:
+        flash("sorry, there are no results for your query. Please try again.")
+        return redirect(url_for("home"))
+
+    else:
+        flash("Results:")
+
+    return render_template("search-results.html", words=words)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -48,22 +55,22 @@ def register():
             flash("Username already exists")
             return redirect(url_for("register"))
 
-        register = {
-            "name": request.form.get("name").lower(),
-            "username": request.form.get("username").lower(),
-            "email": request.form.get("email").lower(),
-            "location": request.form.get("location"),
-            "password": generate_password_hash(request.form.get("password")),
-            "passwordConfirm": generate_password_hash(request.form.get("password"))
-        }
-        if "password" == "passwordConfirm":
+        password = request.form.get("password")
+        passwordConfirm = request.form.get("passwordConfirm")
+        if password == passwordConfirm:
+            register = {
+                "name": request.form.get("name").lower(),
+                "username": request.form.get("username").lower(),
+                "email": request.form.get("email").lower(),
+                "location": request.form.get("location"),
+                "password": generate_password_hash(password)
+            }
+
             mongo.db.users.insert_one(register)
 
         else:
             flash("Passwords do not match")
             return redirect(url_for("register"))
-
-    
 
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
@@ -83,7 +90,7 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("get_dictionary"))
+                return redirect(url_for("home"))
 
             else:
 
@@ -100,11 +107,16 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    words = list(mongo.db.words.find())
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})
 
-    return render_template("profile.html", username=username, words=words)
+    if "user" in session:
+
+        words = list(mongo.db.words.find())
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})
+        return render_template("profile.html", username=username, words=words)
+
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/logout")
@@ -118,18 +130,19 @@ def logout():
 @app.route("/add_word", methods=["GET", "POST"])
 def add_word():
     if request.method == "POST":
-
+        created_by = "anonymous" if request.form.get(
+            "created_by") else session["user"]
         word = {
             "category_name": request.form.get("category_name"),
             "word_name": request.form.get("word_name"),
             "word_definition": request.form.get("word_definition"),
             "word_in_sentence": request.form.get("word_in_sentence"),
             "tags": request.form.get("tags"),
-            "created_by": session["user"]
+            "created_by": created_by
         }
         mongo.db.words.insert_one(word)
         flash("Word Successfully Added")
-        return redirect(url_for("get_dictionary"))
+        return redirect(url_for("home"))
 
     word_type = mongo.db.word_type.find().sort("category_name", 1)
     return render_template("add_word.html", word_type=word_type)
@@ -149,7 +162,7 @@ def update_word(word_id):
         }
         mongo.db.words.update({"_id": ObjectId(word_id)}, submit)
         flash("Word Successfully Updated")
-        return redirect(url_for("get_dictionary"))
+        return redirect(url_for("home"))
 
     word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
     word_type = mongo.db.word_type.find().sort("category_name", 1)
@@ -171,7 +184,7 @@ def update_user(user_id):
         mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
         session["user"] = request.form.get("username").lower()
         flash("Your Profile details have been changed")
-        return redirect(url_for("get_dictionary"))
+        return redirect(url_for("home"))
 
     user_update = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template("update-user.html", user_update=user_update)
@@ -181,12 +194,7 @@ def update_user(user_id):
 def delete_word(word_id):
     mongo.db.words.remove({"_id": ObjectId(word_id)})
     flash("word deleted")
-    return redirect(url_for("get_dictionary"))
-
-
-@app.route("/word_type")
-def word_type():
-    word_type = list(mongo.db.word_type.find().sort("category_name", 1))
+    return redirect(url_for("home"))
 
 
 if __name__ == '__main__':

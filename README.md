@@ -68,9 +68,6 @@ only if they're logged out.
 **Update words the user has made:** When the user see's their word on their website, they'll have the option of updating various fields in it by clicking on the Edit button next to the word. From here they can change the fields of the word, the same
 ones from the add_word template. Must be logged in to update.
 
-### how it works template 
-
-
 ## Features left to implement 
 
 
