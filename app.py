@@ -30,6 +30,21 @@ def home():
     return render_template("index.html", words=words, words_rng=words_rng)
 
 
+@app.route("/word/<word_id>")
+def word(word_id):
+    words = mongo.db.words.find({"_id": ObjectId(word_id)})
+    temp_word = {}
+    for word in words:
+        temp_word = word
+
+    print(temp_word)
+    temp_word['views'] = int(temp_word['views'] + 1)
+    mongo.db.words.update({"_id": ObjectId(word_id)}, temp_word)
+    words = mongo.db.words.find({"_id": ObjectId(word_id)})
+
+    return render_template("word.html", words=words, temp_word=temp_word)
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -77,6 +92,26 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/update_user/<user_id>", methods=["GET", "POST"])
+def update_user(user_id):
+    if request.method == "POST":
+
+        submit = {
+            "name": request.form.get("name").lower(),
+            "username": session["user"].lower(),
+            "email": request.form.get("email").lower(),
+            "location": request.form.get("location").lower(),
+            "password": session["user"].lower()
+        }
+
+        mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
+        flash("Your Profile details have been changed")
+        return redirect(url_for("home"))
+
+    user_update = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    return render_template("update-user.html", user_update=user_update)
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -114,9 +149,9 @@ def profile(username):
         username = mongo.db.users.find_one(
             {"username": session["user"]})
         return render_template("profile.html", username=username, words=words)
-
     else:
-        return redirect(url_for("login"))
+        flash("Woops, you aren't supposed to be here")
+        return redirect(url_for("error"))
 
 
 @app.route("/logout")
@@ -129,65 +164,57 @@ def logout():
 
 @app.route("/add_word", methods=["GET", "POST"])
 def add_word():
-    if request.method == "POST":
-        created_by = "anonymous" if request.form.get(
-            "created_by") else session["user"]
-        word = {
-            "category_name": request.form.get("category_name"),
-            "word_name": request.form.get("word_name"),
-            "word_definition": request.form.get("word_definition"),
-            "word_in_sentence": request.form.get("word_in_sentence"),
-            "tags": request.form.get("tags"),
-            "created_by": created_by
-        }
-        mongo.db.words.insert_one(word)
-        flash("Word Successfully Added")
-        return redirect(url_for("home"))
+    if "user" in session:
+        if request.method == "POST":
+            created_by = "anonymous" if request.form.get(
+                "created_by") else session["user"]
+            word = {
+                "category_name": request.form.get("category_name"),
+                "word_name": request.form.get("word_name"),
+                "word_definition": request.form.get("word_definition"),
+                "word_in_sentence": request.form.get("word_in_sentence"),
+                "tags": request.form.get("tags"),
+                "created_by": created_by
+            }
+            mongo.db.words.insert_one(word)
+            flash("Word Successfully Added")
+            return redirect(url_for("home"))
+    else:
+        flash("Woops, you aren't supposed to be here")
+        return redirect(url_for("error"))
 
     word_type = mongo.db.word_type.find().sort("category_name", 1)
     return render_template("add_word.html", word_type=word_type)
 
 
+@app.route("/error")
+def error():
+    return render_template("error.html")
+
+
 @app.route("/update_word/<word_id>", methods=["GET", "POST"])
 def update_word(word_id):
-    if request.method == "POST":
+    if "user" in session:
+        if request.method == "POST":
 
-        submit = {
-            "category_name": request.form.get("category_name"),
-            "word_name": request.form.get("word_name"),
-            "word_definition": request.form.get("word_definition"),
-            "word_in_sentence": request.form.get("word_in_sentence"),
-            "tags": request.form.get("tags"),
-            "created_by": session["user"]
-        }
-        mongo.db.words.update({"_id": ObjectId(word_id)}, submit)
-        flash("Word Successfully Updated")
-        return redirect(url_for("home"))
+            submit = {
+                "category_name": request.form.get("category_name"),
+                "word_name": request.form.get("word_name"),
+                "word_definition": request.form.get("word_definition"),
+                "word_in_sentence": request.form.get("word_in_sentence"),
+                "tags": request.form.get("tags"),
+                "created_by": session["user"]
+            }
+            mongo.db.words.update({"_id": ObjectId(word_id)}, submit)
+            flash("Word Successfully Updated")
+            return redirect(url_for("home"))
+    else:
+        flash("Woops, you aren't supposed to be here")
+        return redirect(url_for("error"))
 
     word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
     word_type = mongo.db.word_type.find().sort("category_name", 1)
     return render_template("update.html", word=word, word_type=word_type)
-
-
-@app.route("/update_user/<user_id>", methods=["GET", "POST"])
-def update_user(user_id):
-    if request.method == "POST":
-
-        submit = {
-            "name": request.form.get("name"),
-            "username": request.form.get("username").lower(),
-            "email": request.form.get("email"),
-            "location": request.form.get("location"),
-            "password": generate_password_hash(request.form.get("password"))
-        }
-
-        mongo.db.users.update({"_id": ObjectId(user_id)}, submit)
-        session["user"] = request.form.get("username").lower()
-        flash("Your Profile details have been changed")
-        return redirect(url_for("home"))
-
-    user_update = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    return render_template("update-user.html", user_update=user_update)
 
 
 @app.route("/delete_word/<word_id>")

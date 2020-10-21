@@ -68,6 +68,11 @@ only if they're logged out.
 **Update words the user has made:** When the user see's their word on their website, they'll have the option of updating various fields in it by clicking on the Edit button next to the word. From here they can change the fields of the word, the same
 ones from the add_word template. Must be logged in to update.
 
+### error template 
+
+**Displays an error when the user tries to go somewhere where they shouldn't:** If for example, you enter into the url /(username) of someone you're not logged in as, instead of showing you their profile, you'll instead be shown an error page telling them they 
+shouldn't be here.
+
 ## Features left to implement 
 
 
@@ -153,7 +158,23 @@ session["user"] = request.form.get("username").lower()
 
 ````
 
+**As a defensive programmer, I want to see if I can access areas of my website that I should not be able to:**
 
+1. If you're not already logged in, do so by clicking the nav link and filling out the form correctly.
+2. Click on Profle Page, copy the url and now log out.
+3. paste url into browser and press enter.
+4. Repeat steps 1-3  and test update-user.html, update.html
+
+*Results:* Success on all instances, I prompted the error.html page with the appropriate flask message. The python code that initialises this page is below.
+
+
+``` python 
+if "user" in session: (Execute code here)
+
+else:
+        flash("Woops, you aren't supposed to be here")
+        return redirect(url_for("error"))
+```
 
 # Deployment
 

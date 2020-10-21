@@ -20,11 +20,17 @@
 .weight-700 {
     font-weight: 700;
 }
+.font-size-20 {
+    font-size:20px;
+}
 h5 a {
     color: inherit;
 }
 /* colours */
 
+.off-white {
+    background-color: #f7f7f7;
+}
 .blue {
    background-color:#77A6F7;
 }
@@ -37,7 +43,9 @@ h5 a {
 .white {
     background-color: #ffffff;
 }
-
+.decoration-none {
+    color:black;
+}
 /* margins */
 
 .mr-10 {
@@ -97,9 +105,6 @@ h5 a {
     border-left: 1px solid #ddd;
     margin: .5rem 0 1rem 0;
 }
-.font-size-20 {
-    font-size:20px;
-}
 .font-weight-600 {
     font-weight:600;
 }
@@ -136,11 +141,11 @@ nav.nav-center ul li a {
 nav ul a {
     padding-right:10px;
     font-size: 12px;
-
 }
 
 nav ul a:hover {
     background-color:#77A6F7;
+    
 }
 .btn-small {
     margin: 5px;

@@ -14,9 +14,9 @@
     <div class="col s12">
       <div class="card-panel teal mt-word-of-day white-text">
       <h4>Word of the day</h4>
-            <div class="ml-25 pt-20 lora">
-         <strong>{{ word.word_name }}</strong>
-      </div>
+            <p class="ml-25 pt-20 lora font-size-20">
+         {{ word.word_name }}
+      </p>
       <div class="ml-25 montserrat">
         <p>Category: {{ word.category_name }}</p>
          <p>Definition: {{ word.word_definition }}</p>
@@ -52,7 +52,7 @@ function copyToClipboard(element) {
 <div class="row border-style beige">
 <div class=" col l10 s8 ">
       <div class="ml-25 pt-20 lora">
-         <p id="copyword" class="font-size-20">{{ word.word_name }}</p>
+         <p id="copyword" class="font-size-20"><a href="{{ url_for('word', word_id=word._id) }}" class="decoration-none">{{ word.word_name }}</a></p>
       </div>
       <div class="ml-25 montserrat">
         <p id="copy-text" type="text" class="font-weight-600">Category: {{ word.category_name }}</p>

@@ -25,7 +25,9 @@
             
    </div>
 </div>
+{% if session.user|lower == words.created_by|lower %}
 <h4>Here are a list of words that you've created</h4>
+ {% endif %}
 {% for word in words %}
 {% if session.user|lower == word.created_by|lower %}
 <div class="row border-style beige">
