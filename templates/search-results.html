@@ -15,10 +15,10 @@ function copyToClipboard(element) {
   alert("Word Copied");
 }
 </script>
-<div class="row border-style beige pb-25">
-<div class=" col l10 s8">
+<div class="row border-style beige">
+<div class=" col l10 s8 ">
       <div class="ml-25 pt-20 lora">
-         <p id="copyword" class="font-size-20">{{ word.word_name }}</p>
+         <p id="copyword" class="font-size-20"><a href="{{ url_for('word', word_id=word._id) }}" class="decoration-none">{{ word.word_name }}</a></p>
       </div>
       <div class="ml-25 montserrat">
         <p id="copy-text" type="text" class="font-weight-600">Category: {{ word.category_name }}</p>
@@ -29,7 +29,8 @@ function copyToClipboard(element) {
          {% if word.tags|length > 0 %}
          <p>Associated Hashtag: {{ word.tags }}</p>
          {% endif %}
-         <p><em>by: {{ word.created_by }}</em></p>
+         <p><em>By: {{ word.created_by }}</em></p>
+         <p><em>Views: {{ word.views }}</em></p>
       </div>
 </div>
  <div class="col l2 s4">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <h3 class="light-blue-text text-darken-4 center-align">Edit Word</h3>
+  <h3 class="playfair-display center-align">Edit Word</h3>
 <div class="row card-panel grey lighten-5">
    <form class="col s12" method="POST" action="{{ url_for('update_word', word_id=word._id) }}">
       <div class="row">
@@ -53,6 +53,18 @@
          </div>
       </div>
       <div class="row">
+				<div class="input-field col s12">
+					<div class="switch">
+                        <i class="fas fa-comment-slash prefix light-blue-text text-darken-4"></i>
+						<label for="created_by">
+                            <input type="checkbox" id="created_by" name="created_by">
+                            <span class="lever"></span>
+                            Post Word anonymously
+                        </label>
+					</div>
+				</div>
+                </div>
+      <div class="row">
          <div class="col s12 center-align">
             <a href="{{ url_for( 'home') }}" class="btn-large red text-shadow">
             Cancel <i class="fas fa-times-circle right"></i>
@@ -63,6 +75,10 @@
          </div>
       </div>
    </form>
+   <div class="row">
+   <i class="fas fa-exclamation-circle prefix light-blue-text text-darken-4"></i>
+        <p>Note: By posting anonymously, you will not be able to edit the word or claim any ownership on it.</p>
+        </div>
 </div>
 
 {% endblock %}

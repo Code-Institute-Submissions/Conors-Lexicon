@@ -9,7 +9,7 @@
 </div>
 </div>
 
-{% for word in words_rng %}
+{% for word in word_of_the_day %}
   <div class="row mb-100">
     <div class="col s12">
       <div class="card-panel teal mt-word-of-day white-text">
@@ -26,7 +26,8 @@
             {% if word.tags|length > 0 %}
          <p>Associated Hashtag: {{ word.tags }}</p>
          {% endif %}
-         <p><em>by: {{ word.created_by }}</em></p>
+         <p><em>By: {{ word.created_by }}</em></p>
+         <p><em>Views: {{ word.views }}</em></p>
       </div>
       </div>
     </div>
@@ -34,10 +35,10 @@
 {% endfor %}
 <div class="row">
 <div class="col8 offset2">
-<h4> Here are some of our most popular words:</h4>
+<h4> Here are our top 10 trending words:</h4>
 </div>
 </div>
-{% if words|length > 0 %}
+
 {% for word in words %}
 <script>
 function copyToClipboard(element) {
@@ -63,7 +64,8 @@ function copyToClipboard(element) {
          {% if word.tags|length > 0 %}
          <p>Associated Hashtag: {{ word.tags }}</p>
          {% endif %}
-         <p><em>by: {{ word.created_by }}</em></p>
+         <p><em>By: {{ word.created_by }}</em></p>
+         <p><em>Views: {{ word.views }}</em></p>
       </div>
 </div>
  <div class="col l2 s4">
@@ -89,11 +91,7 @@ function copyToClipboard(element) {
          </div>
 </div>
 {% endfor %}
-{% else %}
 
-  
-  
-{% endif %}
 
 {% endblock %}
 

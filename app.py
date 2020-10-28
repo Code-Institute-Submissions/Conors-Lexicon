@@ -4,6 +4,7 @@ from flask import (
     redirect, request,
     url_for, flash, session)
 from flask_pymongo import PyMongo
+import datetime
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -22,12 +23,33 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route("/home")
 def home():
-    words = list([word for word in mongo.db.words.aggregate(
-        [{"$sample": {"size": 10}}])])
-    words_rng = list([word for word in mongo.db.words.aggregate(
-        [{"$sample": {"size": 1}}])])
+    words = mongo.db.words.find().sort("views", -1).limit(10)
+    x = datetime.datetime.now()
+    print(f"now: {x}")
+    current_date = x.strftime("%d/%m/%Y")
+    print(f"now string: {current_date}")
+    timeDb = mongo.db.time.find_one({"_id": ObjectId(
+        "5f9836072ead5e960e82ec42")})
+    print(f"timeDb: {timeDb}")
+    if timeDb["date"] == current_date:
+        time_word = mongo.db.time.find_one({
+            "_id": ObjectId("5f9836072ead5e960e82ec42")})
+        word_of_the_day = time_word["word"]
+    else:
+        word_daily_swap = list([word for word in mongo.db.words.aggregate(
+         [{"$sample": {"size": 1}}])])
+        change = {
+                    "word": word_daily_swap,
+                    "date": current_date
+        }
+        mongo.db.time.update({"_id": ObjectId(
+        "5f9836072ead5e960e82ec42")}, change)
+        time_word = mongo.db.time.find_one({
+            "_id": ObjectId("5f9836072ead5e960e82ec42")})
+        word_of_the_day = time_word["word"]
 
-    return render_template("index.html", words=words, words_rng=words_rng)
+
+    return render_template("index.html", words=words, word_of_the_day=word_of_the_day)
 
 
 @app.route("/word/<word_id>")
@@ -89,6 +111,7 @@ def register():
 
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        return redirect(url_for("home"))
     return render_template("register.html")
 
 
@@ -168,13 +191,15 @@ def add_word():
         if request.method == "POST":
             created_by = "anonymous" if request.form.get(
                 "created_by") else session["user"]
+            views = 0
             word = {
                 "category_name": request.form.get("category_name"),
                 "word_name": request.form.get("word_name"),
                 "word_definition": request.form.get("word_definition"),
                 "word_in_sentence": request.form.get("word_in_sentence"),
                 "tags": request.form.get("tags"),
-                "created_by": created_by
+                "created_by": created_by,
+                "views": views
             }
             mongo.db.words.insert_one(word)
             flash("Word Successfully Added")
@@ -196,6 +221,8 @@ def error():
 def update_word(word_id):
     if "user" in session:
         if request.method == "POST":
+            created_by = "anonymous" if request.form.get(
+                "created_by") else session["user"]
 
             submit = {
                 "category_name": request.form.get("category_name"),
@@ -203,7 +230,7 @@ def update_word(word_id):
                 "word_definition": request.form.get("word_definition"),
                 "word_in_sentence": request.form.get("word_in_sentence"),
                 "tags": request.form.get("tags"),
-                "created_by": session["user"]
+                "created_by": created_by
             }
             mongo.db.words.update({"_id": ObjectId(word_id)}, submit)
             flash("Word Successfully Updated")
