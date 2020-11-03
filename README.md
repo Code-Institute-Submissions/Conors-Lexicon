@@ -1,3 +1,16 @@
+Table of Contents
+=================
+
+   * [Title](#Conors Lexicon)
+   * [MongoDB](#MongoDB)
+   * [UX ](#UX)
+   * [Features](#installation)
+   * [Technologies used](#Technologies used)
+   * [Testing](#Testing)
+   * [Deployment](#Deployment)
+   * [Credits](#Credits)
+
+
 # ***Conors Lexicon***
 
 Conor's Lexicon is a website that is dedicated to those who want to create new Words, Idioms, proverbs etc and share their creation to the rest of the world in the hopes of their world going viral.The website allows people to create
@@ -6,7 +19,7 @@ a dictionary that anyone with a user profile is able to use use CRUD (create, re
 The admin account is able to use CRUD on all words, while other users can only update and delete words that they've made themselves. The Log in details for this account is username "admin" and password "admin123". I recommend using both this account and creating
 your own while on the site.
 
-![Image of Book](https://ibb.co/ypBPXZn)
+![Book-Image](https://user-images.githubusercontent.com/60387356/98040891-fac20600-1e18-11eb-93d0-4652daf34eb6.png)
 
 # MongoDB 
 
@@ -269,7 +282,7 @@ else:
 4. Repeat step 1-3 on the home page trending words, on search-results.html, word.html and profile.html.
 5. Repeat steps 1-4 on Firefox and Opera.
 
-*Results:* Failure, The word would only copy if it didnt have any spaces. I fixed it by changing the html id value value from {{ word.word_name }} to {{ word._id }} This new implementation fixed the code.
+*Results:* Failure, The word would only copy if it didnt have any spaces. I fixed it by changing the html id and the argument for the onclick button value value from {{ word.word_name }} to {{ word._id }} This new implementation fixed the code.
 
 # Deployment
 
