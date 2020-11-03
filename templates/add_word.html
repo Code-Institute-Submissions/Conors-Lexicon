@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <h3 class="playfair-display center-align">Add Word</h3>
+<h3 class="playfair-display center-align">Add Word</h3>
 <div class="row card-panel grey lighten-5">
    <form class="col s12" method="POST" action="{{ url_for('add_word') }}">
+      <!-- The form below will post the entered fields to add_word.html to create a new word -->
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
@@ -27,16 +27,14 @@
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-            <textarea id="word_definition" name="word_definition" minlength="5" maxlength="300" data-length="300" type="text" class="validate materialize-textarea" required></textarea>
-               
+            <textarea id="word_definition" name="word_definition" minlength="5" maxlength="300" data-length="300" class="validate materialize-textarea" required></textarea>
             <label for="word_definition">Word Definition*</label>
          </div>
       </div>
       <div class="row">
          <div class="input-field col s12">
             <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-            <textarea id="word_in_sentence" name="word_in_sentence" minlength="5" maxlength="600" data-length="600" type="text" class="validate materialize-textarea"></textarea>
-               
+            <textarea id="word_in_sentence" name="word_in_sentence" minlength="5" maxlength="600" data-length="600" class="validate materialize-textarea"></textarea>
             <label for="word_in_sentence">Word Used in Sentence</label>
          </div>
       </div>
@@ -49,18 +47,17 @@
          </div>
       </div>
       <div class="row">
-				<div class="input-field col s12">
-					<div class="switch">
-                        <i class="fas fa-comment-slash prefix light-blue-text text-darken-4"></i>
-						<label for="created_by">
-                            <input type="checkbox" id="created_by" name="created_by">
-                            <span class="lever"></span>
-                            Post Word anonymously
-                        </label>
-					</div>
-				</div>
-                </div>
-                
+         <div class="input-field col s12">
+            <div class="switch">
+               <i class="fas fa-comment-slash prefix light-blue-text text-darken-4"></i>
+               <label for="created_by">
+               <input type="checkbox" id="created_by" name="created_by">
+               <span class="lever"></span>
+               Post Word anonymously
+               </label>
+            </div>
+         </div>
+      </div>
       <div class="row">
          <div class="col s12 center-align">
             <button type="submit" class="btn-large light-blue">
@@ -70,11 +67,12 @@
       </div>
    </form>
    <div class="row">
-   <div class="col s12">
-   <i class="fas fa-exclamation-circle prefix light-blue-text text-darken-4"></i>
-        <p>Note: By posting anonymously, you will not be able to edit the word or claim any ownership on it.</p>
-        </div>
-        </div>
+      <div class="col s12">
+         <i class="fas fa-exclamation-circle prefix light-blue-text text-darken-4"></i>
+         <p>Note: By posting anonymously, you will not be able to edit the word or claim any ownership on it.</p>
+      </div>
+   </div>
 </div>
-
 {% endblock %}
+COPY TO CLIPBOARD	 SELECT ALL
+© FreeFormatter.com - FREEFORMATTER is a d/b/a of 10174785 Canada Inc. - Copyright Notice - Privacy Statement - Terms of Use

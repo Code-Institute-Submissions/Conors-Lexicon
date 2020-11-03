@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <h3 class="center-align playfair-display">Log In</h3>
+<h3 class="center-align playfair-display">Log In</h3>
 <div class="row">
    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
       <div class="card-panel">
@@ -22,8 +21,7 @@
             </div>
          </div>
          <div class="row">
-           <button type="submit" class="col s12 btn-large light-blue">Log in <i class="fas fa-sign-in-alt"></i></button>
-
+            <button type="submit" class="col s12 btn-large light-blue">Log in <i class="fas fa-sign-in-alt"></i></button>
          </div>
       </div>
    </form>
@@ -36,6 +34,5 @@
       </p>
    </div>
 </div>
-
+<div class="mb-800"></div>
 {% endblock %}
-

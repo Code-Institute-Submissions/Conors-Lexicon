@@ -26,6 +26,7 @@
 h5 a {
     color: inherit;
 }
+
 /* colours */
 
 .off-white {
@@ -43,11 +44,15 @@ h5 a {
 .white {
     background-color: #ffffff;
 }
-.decoration-none {
+.decoration-none-links {
     color:black;
 }
+
 /* margins */
 
+.mb-800 {
+    margin-bottom:800px;
+}
 .mr-10 {
     margin-left:10px;
 }
@@ -84,7 +89,9 @@ h5 a {
 .pr-34 {
     padding-right:34px;
 }
-
+.mt-50 {
+    margin-top:50px;
+}
 .pb-25 {
     padding-bottom:25px;
 }
@@ -108,6 +115,7 @@ h5 a {
 .font-weight-600 {
     font-weight:600;
 }
+
 /* navbar */
 
 nav {
@@ -142,10 +150,8 @@ nav ul a {
     padding-right:10px;
     font-size: 12px;
 }
-
 nav ul a:hover {
     background-color:#77A6F7;
-    
 }
 .btn-small {
     margin: 5px;
@@ -154,6 +160,7 @@ nav ul a:hover {
     margin: 5px;
     line-height: 42px;
 }
+
 /* Taken from freefrontend.com */
 .form {
     position: relative;
@@ -212,7 +219,13 @@ nav ul a:hover {
       margin-left:0px;
   }
 }
-@media only screen and (max-width: 463px) {
+@media only screen and (max-width: 620px) {
+  nav .brand-logo{
+      font-size:34px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
   nav .brand-logo{
       font-size:26px;
   }
@@ -221,5 +234,17 @@ nav ul a:hover {
 @media only screen and (max-width: 600px) {
   .align-center-600{
       text-align: center
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .error-mobile{
+      height:150px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .text-error-mobile{
+      height:150px;
   }
 }

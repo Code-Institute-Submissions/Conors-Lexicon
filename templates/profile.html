@@ -2,51 +2,48 @@
 {% block content %}
 <div class="row">
    <div class="col s12 m8 offset-m2">
-         <h3 class="center-align  playfair-display ">
-            {{ username.username }}'s Profile
-         </h3>
-         <ul class="collection montserrat">
-    <li class="collection-item ">
-      <span class="title lora">Name:</span>
-      <p>{{ username.name }}</p>
-    </li>
-    <li class="collection-item">
-      <span class="title lora">Email:</span>
-      <p> {{ username.email }} </p>
-    </li>
-    <li class="collection-item">
-      <span class="title lora">Location:</span>
-      <p>{{ username.location }}</p>
-    </li>
-    <li class="collection-item center">
-      <a href="{{ url_for('update_user', user_id=username._id) }}" class=" center hvr-shrink btn-small  light-blue">Edit</a>
-    </li>
-  </ul>
-            
+      <h3 class="center-align  playfair-display ">
+         {{ username.username }}'s Profile
+      </h3>
+      <ul class="collection montserrat">
+         <li class="collection-item ">
+            <span class="title lora">Name:</span>
+            <p>{{ username.name }}</p>
+         </li>
+         <li class="collection-item">
+            <span class="title lora">Email:</span>
+            <p> {{ username.email }} </p>
+         </li>
+         <li class="collection-item">
+            <span class="title lora">Location:</span>
+            <p>{{ username.location }}</p>
+         </li>
+         <li class="collection-item center">
+            <a href="{{ url_for('update_user', user_id=username._id) }}" class=" center hvr-shrink btn-small  light-blue">Edit</a>
+         </li>
+      </ul>
    </div>
 </div>
-{% if session.user|lower == words.created_by|lower %}
-<h4>Here are a list of words that you've created</h4>
- {% endif %}
 {% for word in words %}
 {% if session.user|lower == word.created_by|lower %}
+<!-- Will only show the words that the user in session has created.-->
 <script>
-function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-  alert("Word Copied");
-}
+   function copyToClipboard(element) {
+     var $temp = $("<input>");
+     $("body").append($temp);
+     $temp.val($(element).text()).select();
+     document.execCommand("copy");
+     $temp.remove();
+     alert("copied")
+   }
 </script>
 <div class="row border-style beige">
-<div class=" col l10 s8 ">
+   <div class=" col l10 s8 ">
       <div class="ml-25 pt-20 lora">
-         <p id="copyword" class="font-size-20"><a href="{{ url_for('word', word_id=word._id) }}" class="decoration-none">{{ word.word_name }}</a></p>
+         <p id="{{ word._id }}" class="font-size-20"><a href="{{ url_for('word', word_id=word._id) }}" class="decoration-none-links">{{ word.word_name }}</a></p>
       </div>
       <div class="ml-25 montserrat">
-        <p id="copy-text" type="text" class="font-weight-600">Category: {{ word.category_name }}</p>
+         <p id="copy-text" type="text" class="font-weight-600">Category: {{ word.category_name }}</p>
          <p>Definition: {{ word.word_definition }}</p>
          {% if word.word_in_sentence|length > 0 %}
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
@@ -57,32 +54,25 @@ function copyToClipboard(element) {
          <p><em>By: {{ word.created_by }}</em></p>
          <p><em>Views: {{ word.views }}</em></p>
       </div>
-</div>
- <div class="col l2 s4">
- <div class="mt-35">
-         <button onclick="copyToClipboard('#copyword')"  class=" hvr-shrink border-black btn-small light-blue pr-30">Copy</button>
- </div>
-          {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
-             <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
-         <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
-
-
-        <div id="modal{{ word._id }}" class="modal">
-    <div class="modal-content">
-      <h4>Are you sure you want to delete this word?</h4>
-      <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
-    </div>
-    
-  </div>
-
-  
-        
-         {% endif %}
+   </div>
+   <div class="col l2 s4">
+      <div class="mt-35">
+         <button onclick="copyToClipboard('#{{ word._id }}')"  class=" hvr-shrink border-black btn-small light-blue pr-30">Copy</button>
+      </div>
+      {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
+      <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
+      <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
+      <div id="modal{{ word._id }}" class="modal">
+         <div class="modal-content">
+            <h4>Are you sure you want to delete this word?</h4>
+            <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
          </div>
+      </div>
+      {% endif %}
+   </div>
 </div>
-
-
-
 {% endif %}
 {% endfor %}
+<div class="mb-800"></div>
 {% endblock %}
+COPY TO CLIPBOARD	 SELECT ALL

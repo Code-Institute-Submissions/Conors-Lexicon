@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row off-white">
+   <div class="col s6 offset-s3 ">
+      <h1 class="right text-error-mobile">500 <br>Server Error</h1>
+   </div>
+</div>
+<div class="row">
+   <h4 class="center"><a href="{{ url_for('home') }}">You can Click here to return to the home page</a></h4>
+</div>
+<div class="mb-800"></div>
+{% endblock %}

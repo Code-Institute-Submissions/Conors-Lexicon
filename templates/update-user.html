@@ -11,8 +11,6 @@
                <label for="name">Name</label>
             </div>
          </div>
-
-      
          <div class="row">
             <div class="input-field col s12">
                <i class="far fa-envelope-open prefix light-blue-text"></i>
@@ -21,20 +19,19 @@
             </div>
          </div>
          <div class="row">
-         <div class="input-field col s12">
-         <i class="fas fa-globe-europe prefix light-blue-text"></i>
-    <select id="location" name="location" value="{{ user_update.location }}">
-      <option value="" disabled selected>Choose your Contintent</option>
-      <option value="Europe">Europe</option>
-      <option value="North America">North America</option>
-      <option value="South America">South America</option>
-      <option value="Asia">Asia</option>
-      <option value="Africa">Africa</option>
-      <option value="Indonesia">Indonesia</option>
-    </select>
-    
-    <label>Contintent of Residence</label>
-  </div>
+            <div class="input-field col s12">
+               <i class="fas fa-globe-europe prefix light-blue-text"></i>
+               <select id="location" name="location" value="{{ user_update.location }}">
+                  <option value="" disabled selected>Choose your Contintent</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="South America">South America</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Indonesia">Indonesia</option>
+               </select>
+               <label>Contintent of Residence</label>
+            </div>
          </div>
          <div class="row">
             <button type="submit" class="col s12 btn-large light-blue">Submit <i class="fas fa-sign-in-alt"></i></button>
@@ -42,6 +39,5 @@
       </div>
    </form>
 </div>
-
-
 {% endblock %}
+COPY TO CLIPBOARD	 SELECT ALL

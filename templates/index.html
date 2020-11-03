@@ -1,62 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div class="row welcome-margins ">
-<div class="col10 offset1">
-<h2 class=" playfair-display weight-700 ">Welcome to the dictionary of the <span class="Parisienne weight-700">21st century</span></h2>
-<p class="montserrat weight-700">Here, you are able to see user submitted words by typing  its name, definition or a tag into the search bar.<br> Register an account now to create your own!</p>
-
+   <div class="col10 offset1">
+      <h2 class=" playfair-display weight-700 ">Welcome to the dictionary of the <span class="Parisienne weight-700">21st century</span></h2>
+      <p class="montserrat weight-700">Here, you are able to see user submitted words by typing  its name, definition or a tag into the search bar.<br> Register an account now to create your own!</p>
+   </div>
 </div>
-</div>
-
 {% for word in word_of_the_day %}
-  <div class="row mb-100">
-    <div class="col s12">
-      <div class="card-panel teal mt-word-of-day white-text">
-      <h4>Word of the day</h4>
-            <p class="ml-25 pt-20 lora font-size-20">
-         {{ word.word_name }}
-      </p>
-      <div class="ml-25 montserrat">
-        <p>Category: {{ word.category_name }}</p>
-         <p>Definition: {{ word.word_definition }}</p>
-         {% if word.word_in_sentence|length > 0 %}
-         <p>Word in sentence: {{ word.word_in_sentence }}</p>
-         {% endif %}
+<!-- The word of the day variable is defined in app.py under the home function, The loop is required to iterate over the variable/collection and will display the word. This same process is used in many of my other pages, and below.-->
+<div class="row mb-100 teal ">
+   <div class="col l10 s8  mt-word-of-day white-text">
+   <!-- the script tag would only work if I placed it here inside the loop no other way around it. Found the code on how to copy online, its credited in the readme file-->
+   <script>
+            function copyToClipboardWordOfTheDay(element) {
+              var $temp = $("<input>");
+              $("body").append($temp);
+              $temp.val($(element).text()).select();
+              document.execCommand("copy");
+              $temp.remove();
+            }
+         </script>
+         <h4 class="ml-25">Word of the day</h4>
+         <p class="ml-25 pt-20 lora font-size-20" id="{{ word._id }}">
+            {{ word.word_name }}
+         </p>
+         <div class="ml-25 montserrat">
+          <!-- Since certain fields in words aren't required, I use if statement to check their lengths, if the length is empty the field wont appear on the website.-->
+            <p>Category: {{ word.category_name }}</p>
+            <p>Definition: {{ word.word_definition }}</p>
+            {% if word.word_in_sentence|length > 0 %}
+            <p>Word in sentence: {{ word.word_in_sentence }}</p>
+            {% endif %}
             {% if word.tags|length > 0 %}
-         <p>Associated Hashtag: {{ word.tags }}</p>
-         {% endif %}
-         <p><em>By: {{ word.created_by }}</em></p>
-         <p><em>Views: {{ word.views }}</em></p>
+            <p>Associated Hashtag: {{ word.tags }}</p>
+            {% endif %}
+            <p><em>By: {{ word.created_by }}</em></p>
+            <p><em>Views: {{ word.views }}</em></p>
+         </div>
+   </div>
+   <div class="col l2 s4">
+      <div class="mt-50">
+         <button onclick="copyToClipboardWordOfTheDay('#{{ word._id }}')"  class=" hvr-shrink border-black btn-small light-blue pr-30">Copy</button>
       </div>
+      {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
+      <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
+      <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
+      <!-- The above if statement checks if the user created the word or if the user is an admin, if so they have access to updating or deleting the word in question. Each button calls the appropriate function in python -->
+      <div id="modal{{ word._id }}" class="modal">
+         <div class="modal-content">
+            <h4>Are you sure you want to delete this word?</h4>
+            <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
+         </div>
+         <!-- This modals purpose is to add defensive programming incase the user accidently clicks the delete button, they must confirm that they want to do this action.-->
       </div>
-    </div>
-  </div>
+      {% endif %}
+   </div>
+</div>
 {% endfor %}
 <div class="row">
-<div class="col8 offset2">
-<h4> Here are our top 10 trending words:</h4>
+   <div class="col8 offset2">
+      <h4> Here are our top 10 trending words:</h4>
+   </div>
 </div>
-</div>
-
 {% for word in words %}
-<script>
-function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-  alert("Word Copied");
-}
-</script>
 <div class="row border-style beige">
-<div class=" col l10 s8 ">
+   <div class=" col l10 s8 ">
       <div class="ml-25 pt-20 lora">
-         <p id="copyword" class="font-size-20"><a href="{{ url_for('word', word_id=word._id) }}" class="decoration-none">{{ word.word_name }}</a></p>
+         <script>
+            function copyToClipboard(element) {
+              var $temp = $("<input>");
+              $("body").append($temp);
+              $temp.val($(element).text()).select();
+              document.execCommand("copy");
+              $temp.remove();
+            }
+         </script>
+         <p id="{{ word._id}}" class="font-size-20"><a href="{{ url_for('word', word_id=word._id) }}" class="decoration-none-links">{{ word.word_name }}</a></p>
       </div>
       <div class="ml-25 montserrat">
-        <p id="copy-text" type="text" class="font-weight-600">Category: {{ word.category_name }}</p>
+         <p class="font-weight-600">Category: {{ word.category_name }}</p>
          <p>Definition: {{ word.word_definition }}</p>
          {% if word.word_in_sentence|length > 0 %}
          <p>Word in sentence: {{ word.word_in_sentence }}</p>
@@ -64,37 +86,28 @@ function copyToClipboard(element) {
          {% if word.tags|length > 0 %}
          <p>Associated Hashtag: {{ word.tags }}</p>
          {% endif %}
+         <!-- Since word in sentence and tags arent required when creating a word, I check the length of those fields to see if data was inputted or not, yes then ill display them, otherwise the p tags will be hidden.-->
          <p><em>By: {{ word.created_by }}</em></p>
          <p><em>Views: {{ word.views }}</em></p>
       </div>
-</div>
- <div class="col l2 s4">
- <div class="mt-35">
-         <button onclick="copyToClipboard('#copyword')"  class=" hvr-shrink border-black btn-small light-blue pr-30">Copy</button>
- </div>
-          {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
-             <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
-         <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
-
-
-        <div id="modal{{ word._id }}" class="modal">
-    <div class="modal-content">
-      <h4>Are you sure you want to delete this word?</h4>
-      <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
-    </div>
-    
-  </div>
-
-  
-        
-         {% endif %}
+   </div>
+   <div class="col l2 s4">
+      <div class="mt-35">
+         <button onclick="copyToClipboard('#{{ word._id }}')"  class=" hvr-shrink border-black btn-small light-blue pr-30">Copy</button>
+      </div>
+      {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
+      <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
+      <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
+      <!-- The above if statement checks if the user created the word or if the user is an admin, if so they have access to updating or deleting the word in question. Each button calls the appropriate function in python -->
+      <div id="modal{{ word._id }}" class="modal">
+         <div class="modal-content">
+            <h4>Are you sure you want to delete this word?</h4>
+            <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
          </div>
+         <!-- This modals purpose is to add defensive programming incase the user accidently clicks the delete button, they must confirm that they want to do this action.-->
+      </div>
+      {% endif %}
+   </div>
 </div>
 {% endfor %}
-
-
 {% endblock %}
-
- 
-         
-

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
- <h3 class="center-align playfair-display">Register</h3>
+<h3 class="center-align playfair-display">Register</h3>
 <div class="row">
    <form class="col s12 m8 offset-m2" method="POST" action="{{url_for('register') }}">
+      <!-- posts form date to the register function in the app.py file-->
       <div class="card-panel">
          <div class="row">
             <div class="input-field col s12">
@@ -11,7 +12,6 @@
                <label for="name">Name</label>
             </div>
          </div>
-         
          <div class="row">
             <div class="input-field col s12">
                <i class="fas fa-users prefix light-blue-text"></i>
@@ -27,20 +27,19 @@
             </div>
          </div>
          <div class="row">
-         <div class="input-field col s12">
-         <i class="fas fa-globe-europe prefix light-blue-text"></i>
-    <select id="location" name="location">
-      <option value="" disabled selected>Choose your Contintent</option>
-      <option value="Europe">Europe</option>
-      <option value="North America">North America</option>
-      <option value="South America">South America</option>
-      <option value="Asia">Asia</option>
-      <option value="Africa">Africa</option>
-      <option value="Indonesia">Indonesia</option>
-    </select>
-    
-    <label>Contintent of Residence</label>
-  </div>
+            <div class="input-field col s12">
+               <i class="fas fa-globe-europe prefix light-blue-text"></i>
+               <select id="location" name="location">
+                  <option value="" disabled selected>Choose your Contintent</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="South America">South America</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Indonesia">Indonesia</option>
+               </select>
+               <label>Contintent of Residence</label>
+            </div>
          </div>
          <div class="row">
             <div class="input-field col s12">
@@ -56,13 +55,13 @@
                <label for="passwordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
             </div>
          </div>
+         <!-- added an extra password field for defensive design, it would be bad if an user entered their desired password with a typo and then cant login in the future,-->
          <div class="row">
             <button type="submit" class="col s12 btn-large light-blue">Register <i class="fas fa-sign-in-alt"></i></button>
          </div>
       </div>
    </form>
 </div>
-
 <div class="row">
    <div class="col s12">
       <p class="center-align">
@@ -71,6 +70,6 @@
       </p>
    </div>
 </div>
-
-
 {% endblock %}
+COPY TO CLIPBOARD	 SELECT ALL
+© FreeFormatter.com - FREEFORMATTER is a d/b/a of 10174785 Canada Inc. - Copyright Notice - Privacy Statement - Terms of Use
