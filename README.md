@@ -1,11 +1,11 @@
 Table of Contents
 =================
 
-   * [Title](#ConorsLexicon)
+   * [Title](#Conors-Lexicon)
    * [MongoDB](#MongoDB)
    * [UX ](#UX)
-   * [Features](#installation)
-   * [Technologies used](#Technologiesused)
+   * [Features](#Features)
+   * [Technologies used](#Technologies-used)
    * [Testing](#Testing)
    * [Deployment](#Deployment)
    * [Credits](#Credits)
