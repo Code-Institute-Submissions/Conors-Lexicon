@@ -1,3 +1,4 @@
+// from Materialise, used to initialise some of their features.
 $(document).ready(function () {
     $(".sidenav").sidenav({edge: "right"});
     $(".collapsible").collapsible();

@@ -1,5 +1,3 @@
-[TOC]
-
 # ***Conors Lexicon***
 
 Conor's Lexicon is a website that is dedicated to those who want to create new Words, Idioms, proverbs etc and share their creation to the rest of the world in the hopes of their world going viral.The website allows people to create
@@ -7,6 +5,8 @@ a dictionary that anyone with a user profile is able to use use CRUD (create, re
 
 The admin account is able to use CRUD on all words, while other users can only update and delete words that they've made themselves. The Log in details for this account is username "admin" and password "admin123". I recommend using both this account and creating
 your own while on the site.
+
+![Image of Book](https://ibb.co/ypBPXZn)
 
 # MongoDB 
 
@@ -181,7 +181,7 @@ good too.
 
 [Werkzeug:](https://werkzeug.palletsprojects.com/en/1.0.x/) For generating password hash for security reasons.
 
-[Datetime:](https://docs.python.org/3/library/datetime.html) Used to change the word of the day on the homepage
+[Datetime:](https://docs.python.org/3/library/datetime.html) Used to change the word of the day on the homepage.
 
 # Testing
 
@@ -261,7 +261,18 @@ else:
         return redirect(url_for("error"))
 ```
 
+**As a user, I want to copy the word by using the copy button:**
+
+1. Navigate to the home page.
+2. Click on the Copy button in word of the day.
+3. paste your new copied word somewhere
+4. Repeat step 1-3 on the home page trending words, on search-results.html, word.html and profile.html.
+5. Repeat steps 1-4 on Firefox and Opera.
+
+*Results:* Failure, The word would only copy if it didnt have any spaces. I fixed it by changing the html id value value from {{ word.word_name }} to {{ word._id }} This new implementation fixed the code.
+
 # Deployment
+
 
 
 # Credits

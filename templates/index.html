@@ -42,16 +42,16 @@
       <div class="mt-50">
          <button onclick="copyToClipboardWordOfTheDay('#{{ word._id }}')"  class=" hvr-shrink border-black btn-small light-blue pr-30">Copy</button>
       </div>
+      <!-- The below if statement checks if the user created the word or if the user is an admin, if so they have access to updating or deleting the word in question. Each button calls the appropriate function in python -->
       {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
       <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
       <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
-      <!-- The above if statement checks if the user created the word or if the user is an admin, if so they have access to updating or deleting the word in question. Each button calls the appropriate function in python -->
+       <!-- This modals purpose is to add defensive programming in case the user accidently clicks the delete button, they must confirm that they want to do this action.-->
       <div id="modal{{ word._id }}" class="modal">
          <div class="modal-content">
             <h4>Are you sure you want to delete this word?</h4>
             <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
          </div>
-         <!-- This modals purpose is to add defensive programming incase the user accidently clicks the delete button, they must confirm that they want to do this action.-->
       </div>
       {% endif %}
    </div>
@@ -98,13 +98,11 @@
       {% if session.user|lower == word.created_by|lower or session.user|lower == 'admin' %}
       <div class="pt-20"><a href="#modal{{ word._id }}" class="hvr-shrink btn-small light-blue modal-trigger">Delete</a></div>
       <div class="pt-20"><a href="{{ url_for('update_word', word_id=word._id) }}" class="hvr-shrink btn-small pr-34 light-blue">Edit</a></div>
-      <!-- The above if statement checks if the user created the word or if the user is an admin, if so they have access to updating or deleting the word in question. Each button calls the appropriate function in python -->
       <div id="modal{{ word._id }}" class="modal">
          <div class="modal-content">
             <h4>Are you sure you want to delete this word?</h4>
             <div class="center"><a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-small light-blue">Yes</a> <a href="" class="modal-close btn-small light-blue">No</a></div>
          </div>
-         <!-- This modals purpose is to add defensive programming incase the user accidently clicks the delete button, they must confirm that they want to do this action.-->
       </div>
       {% endif %}
    </div>

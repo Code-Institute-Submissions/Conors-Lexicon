@@ -6,7 +6,9 @@ from flask import (
 from flask_pymongo import PyMongo  # required to communicate with mongodb
 import datetime
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash # keeps the password field value to be hashed on mongodb for added security for the websites user.
+# keeps the password field value to be hashed on mongodb for added security
+# for the websites user.
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -23,12 +25,15 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route("/home")
 def home():
-  # This function does two different things, the first and straightforward one is to 
-  # sort the words collection by the amount of views in descending order it has and
-  # limits the results to 10. We must use the sort and limit methods to achieve this. Next, we will change word of the day on the index page to change daily.
-  # We achieve this by importing datetime above, then we set a variable to equal the current time.
-  # We convert it to a string and compare it to the value inside the date field on MongodB. A new word is chosen if the dates dont match,
-  # otherwise the word is picked from the word field in the time collection.
+    # This function does 2 different things, the first and straightforward one
+    # is to sort the words collection by the amount of views in descending
+    # order it has and limits the results to 10. We must use the sort and
+    # limit methods to achieve this. Next, we will change word of the day
+    # on the index page to change daily.We achieve this by importing datetime
+    # above, then we set a variable to equal the current time.We convert it to
+    # a string and compare it to the value inside the date field on MongodB.
+    # A new word is chosen if the dates dont match,otherwise the word is
+    # picked from the word field in the time collection.
 
     words = mongo.db.words.find().sort("views", -1).limit(10)
     time_import = datetime.datetime.now()
@@ -52,7 +57,7 @@ def home():
             "_id": ObjectId("5f9836072ead5e960e82ec42")})
         word_of_the_day = time_word["word"]
 
-    return render_template("index.html", words=words, word_of_the_day=word_of_the_day)
+    return render_template("index.html", words=words,word_of_the_day=word_of_the_day)
 
 
 @app.route("/word/<word_id>")
@@ -134,12 +139,12 @@ def register():
             else:
                 flash("Passwords do not match")
                 return redirect(url_for("register"))
-                # assigns the password and passwordConfirm to two variables of
-                # the same name, if they're the same then a register variable is
-                # created with all the form values, it is then inserted into the
-                # database using the insert_one method. The password is protected
-                # and cant be seen on MongoDb by importing generate_password_hash
-                # from werkzeug.security
+            # assigns the password and passwordConfirm to two variables of
+            # the same name, if they're the same then a register variable is
+            # created with all the form values, it is then inserted into the
+            # database using the insert_one method. The password is protected
+            # and cant be seen on MongoDb by importing generate_password_hash
+            # from werkzeug.security
 
             session["user"] = request.form.get("username").lower()
             flash("Registration Successful!")
@@ -148,8 +153,8 @@ def register():
     else:
         flash("Woops, you aren't supposed to be here")
         return redirect(url_for("error"))
-            # the new user will be logged by importing session from flask
-            # and applying that here, you'll be redirected to the homepage.
+        # the new user will be logged by importing session from flask
+        # and applying that here, you'll be redirected to the homepage.
     return render_template("register.html")
 
 
@@ -204,8 +209,8 @@ def login():
 
             else:
                 # their are two types of errors that can happen during login,
-                # an incorrect username or password. I check for both with these
-                # two if statements, if either value is incorrect, I will display
+                # an incorrect username or password. I check for both with
+                # two if statements.If either value is wrong, I will display
                 # the exact same error message. This is important for defensive
                 # design as a hacker, for example, wouldn't be able know which
                 # part they entered correctly/incorrectly.
@@ -340,7 +345,7 @@ def update_word(word_id):
 # to have the form data already filled in on update.html.
     word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
     word_type = mongo.db.word_type.find().sort("category_name", 1)
-    return render_template("update.html", word=word, word_type=word_type)
+    return render_template("update-word.html", word=word, word_type=word_type)
 
 
 @app.route("/delete_word/<word_id>")
