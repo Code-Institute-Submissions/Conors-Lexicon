@@ -140,12 +140,12 @@ Below are some Wireframes for profile.html:
 **Update words the user has made:** When the user finds their word on the website, be it on the homepage, by searching or in their profile view, they'll have the option of updating various fields in it by clicking on the Edit button next to the word.
 From here they can change the fields of the word, the same ones from the add_word template. Must be logged in to update. No wireframe included as its almost identical to add_word.html, apart from the buttons.
 
-### error template 
+### error template(s)
 
-**Displays an error when the user tries to go somewhere where they shouldn't:** If for example, you enter into the url /(username) of someone they're not logged in as, instead of showing you their profile, you'll instead be shown an error page telling them they 
-shouldn't be here. This will also display for add_word.html. If the user is logged in but enters the url to register or log in, they'll also see this page.
+**Displays an error page on the website:** If for example, you enter into the url /(username) of someone they're not logged in as, instead of showing you their profile, you'll instead be shown an error page telling them they 
+shouldn't be here. This will also display for add_word.html. If the user is logged in but enters the url to register or log in, they'll also see this page. Also made an error page for not found (404) and Internal server error (500).
 
-Below is a wireframe for error.html, there is little to no difference
+Below is a wireframe for error.html pages, there is little difference between error 403, 404 and 500 pages in terms of styling.
 
 * [Desktop](https://ibb.co/nkbnMqh)
 * [Tablet](https://ibb.co/bdKYDsR)
@@ -287,9 +287,9 @@ else:
 
 # Deployment
 
-Here I will demostrate the exact steps I took to deploy my website to Heroku.
+Here I will demonstrate the exact steps I took to deploy my website to Heroku.
 
-First of all, I had to create a new repository on github.com and I named it after my website, Conors Lexicon. I installed Flask using the console command "pip3 install flask", I created my fundamental python file called app.py (you can this file and others
+First of all, I had to create a new repository on Github.com and I named it after my website, Conors Lexicon. I installed Flask using the console command "pip3 install flask", I created my fundamental python file called app.py (you can this file and others
 using touch, so I typed "touch app.py into the console) and an env.py file. I then used touch to create a .gitignore file which will hide my env.py file by typing "env.py" on line 1 and "__pycache__/" on line 2. On my env.py file I typed os.environ.setdefault("", "")
 ,inside the first brackets being IP for example and the secone being its value. I did the same for PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME in the first field. [Here](https://ibb.co/yRH1kxq) is how I set up my app.py file up to this point.
 
@@ -301,12 +301,12 @@ From here, I clicked on the deploy tab, then in Deployment Method I clicked on t
 
 Since my env.py file is hidden under .gitignore, I must supply those variable values directly to Heroku. I clicked settings, Reveal Config Vars. I gave an IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME fields and the value that I've inside my hidden env.py file.
 
-Back on Gitpod, I used the git add command to add my Procfile and requirements.txt files, for example I typed into the console "git add Procfile". Then I used git commit -m with a mesage inside quotation marks saying I added these two files. Now they must be pushed to
+Back on Gitpod, I used the git add command to add my Procfile and requirements.txt files, for example I typed into the console "git add Procfile". Then I used git commit -m with a message inside quotation marks saying I added these two files. Now they must be pushed to
 Github for the changes to be seen on Heroku, I typed "git push" into the console. From here on, any sizeable changes I made to my code, I recorded them with the commit command, explaining exactly what I was doing.
 
 I never actually enabled automatic deployment until the end of my project, so I will tell you how to do that now. I made sure to push my changes to github using the git push command so Heroku can see the changes. Click on the deploy tab and in automatic deploys,
 I clicked enable automatic deploys and then underneath that I clicked Deploy Branch, making sure the correct branch is chosen, for me that was the master branch. You will see the application being built in the box and you need only wait a minute or two before its
-finished. You'll get a message saying your application is sucessfully deployed. When you click view, you'll see your applcation on heroku. You'll want to use git push any additional changes you make to see them on Heroku. During the vast majority of my development time,
+finished. You'll get a message saying your application is successfully  deployed. When you click view, you'll see your applcation on Heroku. You'll want to use git push any additional changes you make to see them on Heroku. During the vast majority of my development time,
 I used git commit but seldom pushed to github, unless for example I wanted to see how my readme responded to the markdown I was using.
 
 There are no differences between my developed version of the website and the final deployed version of the website on Heroku.
