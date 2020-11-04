@@ -88,6 +88,7 @@ Below are some Wireframes for index.html:
 
 ### add_word Template
 
+
 **Create a new word:** Gives the user a form to create a new word and add it to the database, they need to fill out its category, word name, description, optionally demonstrate its use in a sentence and finally apply a tag for better index searching, if they wish.
 There is also the option to post the word anonymously, however this will mean they wont be able to edit or delete the word themselves. Must be logged in to see this page on the navbar.
 
@@ -286,7 +287,29 @@ else:
 
 # Deployment
 
+Here I will demostrate the exact steps I took to deploy my website to Heroku.
 
+First of all, I had to create a new repository on github.com and I named it after my website, Conors Lexicon. I installed Flask using the console command "pip3 install flask", I created my fundamental python file called app.py (you can this file and others
+using touch, so I typed "touch app.py into the console) and an env.py file. I then used touch to create a .gitignore file which will hide my env.py file by typing "env.py" on line 1 and "__pycache__/" on line 2. On my env.py file I typed os.environ.setdefault("", "")
+,inside the first brackets being IP for example and the secone being its value. I did the same for PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME in the first field. [Here](https://ibb.co/yRH1kxq) is how I set up my app.py file up to this point.
+
+I  Deployed my website to Heroku before actually writing any line of code, besides a simply hello world text. I had to tell Heroku which dependencies and applications I needed to run the . I ran the command "pip3 freeze --local> requirements.txt
+inside the terminal on gitpod. I then  used "echo web: python app.py >Procfile" which created a Procfile. The procfile tells Heroku what to look for and what it needs to run the application. [Here](https://ibb.co/sjZGB5X)is what my requirements.txt file looks like.
+
+Next, I went to Heroku.com and clicked on the new button, then "create new app" (Note you must have a user account to have access to the dashboard page which contains this button). I named my App after my project, conors-lexicon and chose the region closest to me. 
+From here, I clicked on the deploy tab, then in Deployment Method I clicked on the Github option. I chose my profile and repository name in the two fields and clicked search. Upon finding my repository, I clicked connect.
+
+Since my env.py file is hidden under .gitignore, I must supply those variable values directly to Heroku. I clicked settings, Reveal Config Vars. I gave an IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME fields and the value that I've inside my hidden env.py file.
+
+Back on Gitpod, I used the git add command to add my Procfile and requirements.txt files, for example I typed into the console "git add Procfile". Then I used git commit -m with a mesage inside quotation marks saying I added these two files. Now they must be pushed to
+Github for the changes to be seen on Heroku, I typed "git push" into the console. From here on, any sizeable changes I made to my code, I recorded them with the commit command, explaining exactly what I was doing.
+
+I never actually enabled automatic deployment until the end of my project, so I will tell you how to do that now. I made sure to push my changes to github using the git push command so Heroku can see the changes. Click on the deploy tab and in automatic deploys,
+I clicked enable automatic deploys and then underneath that I clicked Deploy Branch, making sure the correct branch is chosen, for me that was the master branch. You will see the application being built in the box and you need only wait a minute or two before its
+finished. You'll get a message saying your application is sucessfully deployed. When you click view, you'll see your applcation on heroku. You'll want to use git push any additional changes you make to see them on Heroku. During the vast majority of my development time,
+I used git commit but seldom pushed to github, unless for example I wanted to see how my readme responded to the markdown I was using.
+
+There are no differences between my developed version of the website and the final deployed version of the website on Heroku.
 
 # Credits
 
