@@ -57,7 +57,8 @@ def home():
             "_id": ObjectId("5f9836072ead5e960e82ec42")})
         word_of_the_day = time_word["word"]
 
-    return render_template("index.html", words=words,word_of_the_day=word_of_the_day)
+    return render_template("index.html", words=words,
+     word_of_the_day=word_of_the_day)
 
 
 @app.route("/word/<word_id>")
@@ -198,7 +199,8 @@ def login():
                 # to the homepage with welcome message to have their own
                 # username appear on screen.
                 if check_password_hash(
-                        existing_user["password"], request.form.get("password")):
+                        existing_user["password"],
+                        request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
                     return redirect(url_for("home"))
@@ -217,8 +219,7 @@ def login():
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
     else:
-        flash("Woops, you aren't supposed to be here")
-        return redirect(url_for("error"))
+        return redirect(url_for("error_403"))
 
     return render_template("login.html")
 
@@ -234,16 +235,19 @@ def profile(username):
     # function will be called opening error.html saying access forbidden.
     # We bring the words and username variables to the
     # html page so we can display profile details and words that the user
-    # has made on the webpage.
+    # has created. The words_header variable is there to provide a
+    # header if there is a single instance of their username being tied
+    # to a created word.
     if "user" in session:
 
+        words_header = (mongo.db.words.find_one({"created_by": username}))
         words = list(mongo.db.words.find())
         username = mongo.db.users.find_one(
             {"username": session["user"]})
-        return render_template("profile.html", username=username, words=words)
+        return render_template("profile.html", username=username,
+         words=words, words_header=words_header)
     else:
-        flash("Woops, you aren't supposed to be here")
-        return redirect(url_for("error"))
+        return redirect(url_for("error_403"))
 
 
 @app.route("/logout")
@@ -285,15 +289,14 @@ def add_word():
             return redirect(url_for("home"))
 
     else:
-        flash("Woops, you aren't supposed to be here")
-        return redirect(url_for("error"))
+        return redirect(url_for("error_403"))
 
     word_type = mongo.db.word_type.find().sort("category_name", 1)
     return render_template("add_word.html", word_type=word_type)
 
 
-@app.route("/error")
-def error():
+@app.route("/error-403")
+def error_403():
     # purpose of this function is to display a forbiden 403
     # error for defensive programming purposes, more is explained inside the
     # login function
@@ -301,11 +304,15 @@ def error():
 
 
 @app.errorhandler(404)
+# Taken from the flask documnentation, this function will be called in the
+# case of a page not being found.
 def page_not_found_404(e):
     return render_template('error-404.html'), 404
 
 
 @app.errorhandler(500)
+# Taken from the flask documnentation, this function will be called in the
+# case of an Internal server error.
 def page_not_found_500(e):
     return render_template('error-500.html'), 500
 
@@ -338,8 +345,7 @@ def update_word(word_id):
             return redirect(url_for("home"))
 
     else:
-        flash("Woops, you aren't supposed to be here")
-        return redirect(url_for("error"))
+        return redirect(url_for("error_403"))
 # the word ID is brought over upon clicking the edit button on the browser,
 # which allows us to both edit the details of that specific object and
 # to have the form data already filled in on update.html.

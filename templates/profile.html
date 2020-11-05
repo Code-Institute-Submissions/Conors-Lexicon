@@ -24,6 +24,14 @@
       </ul>
    </div>
 </div>
+<!-- I use the Boolean in Operator to check if the logged in username has created a word, if so I will supply a h4 tag with text. -->
+{% if session.user in words_header.created_by|lower %}
+<div class="row mt-50">
+   <div class="col8 offset2 ">
+      <h4 class="montserrat"> Here are words that you have created:</h4>
+   </div>
+</div>
+{% endif %}
 {% for word in words %}
 {% if session.user|lower == word.created_by|lower %}
 <!-- Will only show the words that the user in session has created.-->

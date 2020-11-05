@@ -126,7 +126,7 @@ Below are some Wireframes for login.html:
 ### Profile Template 
 
 **View your unique profile:** When the user is logged in, they will be able to see their profile page link on the navbar. From there, they will see the details they entered upon registering as well as the words that they've created, Assuming
-they chose not to post the word anonymously.
+they chose not to post the word anonymously. A single header will appear if they have created any words.
 
 Below are some Wireframes for profile.html:
 
@@ -264,7 +264,7 @@ session["user"] = request.form.get("username").lower()
 3. paste url into browser and press enter.
 4. Repeat steps 1-3  and test update-user.html, update.html
 
-*Results:* Success on all instances, I prompted the error.html page with the appropriate flask message. The python code that initialized  this page is below.
+*Results:* Success on all instances, I prompted the error-403.html page with the appropriate flask message. The python code that initialized  this page is below.
 
 
 ```python 
